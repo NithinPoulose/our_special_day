@@ -39,6 +39,14 @@ testem.log
 /typings
 __screenshots__/
 
+# AI tool configs
+.claude/
+.cursor/
+.gemini/
+.junie/
+.windsurf/
+AGENTS.md
+
 # System files
 .DS_Store
 Thumbs.db
