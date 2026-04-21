@@ -74,10 +74,20 @@ export class NotificationService {
       clearTimeout(this.randomTimer);
     }
 
-    // Random time between 2 and 16 hours from now
-    const minMs = 2 * 60 * 60 * 1000;
-    const maxMs = 16 * 60 * 60 * 1000;
-    const delay = minMs + Math.random() * (maxMs - minMs);
+    // Pick a random time between 10:00 AM and 10:00 PM today (or tomorrow if past 10 PM)
+    const now = new Date();
+    const target = new Date(now);
+    const randomHour = 10 + Math.random() * 12; // 10.0 to 22.0
+    const hour = Math.floor(randomHour);
+    const minute = Math.floor((randomHour - hour) * 60);
+    target.setHours(hour, minute, 0, 0);
+
+    // If target is in the past, schedule for tomorrow
+    if (target.getTime() <= now.getTime()) {
+      target.setDate(target.getDate() + 1);
+    }
+
+    const delay = target.getTime() - now.getTime();
 
     this.randomTimer = setTimeout(() => {
       this.sendRandomLoveNote();
