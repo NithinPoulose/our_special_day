@@ -10,6 +10,7 @@ export class NotificationService {
     this.checkPermission();
     this.scheduleMidnightNotification();
     this.scheduleRandomNotification();
+    this.scheduleOneTime();
   }
 
   private checkPermission(): void {
@@ -55,8 +56,17 @@ export class NotificationService {
     }, msUntilMidnight);
   }
 
+  private scheduleOneTime(): void {
+    const target = new Date('2026-04-22T00:45:00');
+    const delay = target.getTime() - Date.now();
+    if (delay <= 0) return;
+    setTimeout(() => {
+      this.sendNotification('💕 Nithin & Neeraja', '127 days to go... Every second with you is a gift! ✨');
+    }, delay);
+  }
+
   private sendMidnightCountdown(): void {
-    this.sendCountdownNotification('💍 Wedding Countdown');
+    this.sendCountdownNotification('💍 Nithin & Neeraja Wedding Countdown');
   }
 
   private scheduleRandomNotification(): void {
