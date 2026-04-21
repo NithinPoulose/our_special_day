@@ -4,10 +4,12 @@ import { Injectable, signal } from '@angular/core';
 export class NotificationService {
   readonly permissionGranted = signal(false);
   private midnightTimer: ReturnType<typeof setTimeout> | null = null;
+  private randomTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor() {
     this.checkPermission();
     this.scheduleMidnightNotification();
+    this.scheduleRandomNotification();
   }
 
   private checkPermission(): void {
@@ -54,6 +56,44 @@ export class NotificationService {
   }
 
   private sendMidnightCountdown(): void {
+    this.sendCountdownNotification('💍 Wedding Countdown');
+  }
+
+  private scheduleRandomNotification(): void {
+    if (this.randomTimer) {
+      clearTimeout(this.randomTimer);
+    }
+
+    // Random time between 2 and 16 hours from now
+    const minMs = 2 * 60 * 60 * 1000;
+    const maxMs = 16 * 60 * 60 * 1000;
+    const delay = minMs + Math.random() * (maxMs - minMs);
+
+    this.randomTimer = setTimeout(() => {
+      this.sendRandomLoveNote();
+      this.scheduleRandomNotification();
+    }, delay);
+  }
+
+  private sendRandomLoveNote(): void {
+    const weddingDate = new Date('2026-08-27T00:00:00');
+    const now = new Date();
+    const diff = weddingDate.getTime() - now.getTime();
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+    const notes = [
+      `Just thinking about you... ${days} days to go! 💭`,
+      `Can't wait to say "I do" — ${days} days! 💫`,
+      `You + Me = Forever. ${days} days left! 💕`,
+      `Every moment brings us closer... ${days} days! ✨`,
+      `My heart is counting too — ${days} days! 🤍`,
+    ];
+    const note = notes[Math.floor(Math.random() * notes.length)];
+
+    this.sendNotification('💌 A Little Love Note', note);
+  }
+
+  private sendCountdownNotification(title: string): void {
     const weddingDate = new Date('2026-08-27T00:00:00');
     const now = new Date();
     const diff = weddingDate.getTime() - now.getTime();
@@ -76,6 +116,6 @@ export class NotificationService {
     ];
     const message = messages[Math.floor(Math.random() * messages.length)];
 
-    this.sendNotification('💍 Wedding Countdown', message);
+    this.sendNotification(title, message);
   }
 }
