@@ -1,0 +1,527 @@
+// ─── Color Palette — Midnight & Gold ───
+$gold: #d4a96a;
+$bright-gold: #f0d48a;
+$soft-gold: #c9a84c;
+$midnight: #0a0a1a;
+$deep-navy: #111128;
+$lavender: #b8a9c9;
+$soft-cream: #e8dcc8;
+$warm-glow: #f5e6c8;
+$star-white: #ffffffcc;
+
+// ─── Click Love Hearts ───
+.click-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+}
+
+.click-heart {
+  position: fixed;
+  font-size: 1.4rem;
+  pointer-events: none;
+  animation: loveBurst 1s ease-out forwards;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes loveBurst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 60px)) scale(0.8);
+  }
+}
+
+// ─── Notification Banner ───
+:host {
+  display: block;
+}
+
+.notification-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #1a1a3e, rgba($gold, 0.6));
+  color: white;
+  font-size: 0.9rem;
+  animation: slideDown 0.5s ease-out;
+  flex-wrap: wrap;
+
+  p {
+    margin: 0;
+  }
+
+  .banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-enable {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+    font-family: inherit;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(255, 255, 255, 0.35);
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
+
+  .btn-dismiss {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+    line-height: 1;
+
+    &:hover,
+    &:focus-visible {
+      color: white;
+      background: rgba(255, 255, 255, 0.15);
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// ─── Shooting Stars ───
+.shooting-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.6), transparent);
+    transform: rotate(-45deg);
+    transform-origin: 0 0;
+  }
+
+  &:nth-child(1) {
+    top: 8%;
+    left: 70%;
+    animation: shootingStar 6s ease-in-out 2s infinite;
+  }
+
+  &:nth-child(2) {
+    top: 15%;
+    left: 40%;
+    animation: shootingStar 8s ease-in-out 5s infinite;
+  }
+
+  &:nth-child(3) {
+    top: 5%;
+    left: 85%;
+    animation: shootingStar 7s ease-in-out 9s infinite;
+  }
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  2% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  8% {
+    opacity: 0.8;
+    transform: translate(-200px, 200px) scale(1);
+  }
+  12% {
+    opacity: 0;
+    transform: translate(-300px, 300px) scale(0.3);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-300px, 300px) scale(0);
+  }
+}
+
+// ─── Particles ───
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, $bright-gold, $gold);
+  opacity: 0;
+  animation: floatUp linear infinite;
+  box-shadow: 0 0 6px rgba($gold, 0.4);
+
+  &:nth-child(odd) {
+    background: radial-gradient(circle, $star-white, $lavender);
+    box-shadow: 0 0 6px rgba($lavender, 0.3);
+  }
+
+  &:nth-child(3n) {
+    background: radial-gradient(circle, $warm-glow, $soft-gold);
+    box-shadow: 0 0 8px rgba($gold, 0.5);
+  }
+}
+
+// ─── Container ───
+.container {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.5rem;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+// ─── Hero Section ───
+.hero {
+  text-align: center;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.ornament {
+  font-size: 1.5rem;
+  color: $gold;
+  letter-spacing: 0.5rem;
+  opacity: 0.7;
+
+  &.top-ornament {
+    margin-bottom: 1rem;
+  }
+
+  &.bottom-ornament {
+    margin-top: 1rem;
+  }
+}
+
+.save-the-date {
+  font-family: 'Georgia', serif;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: $gold;
+  margin: 0 0 1rem;
+}
+
+.couple-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.name {
+  font-family: 'Georgia', serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  background: linear-gradient(135deg, $warm-glow, $gold, $bright-gold);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 20px rgba($gold, 0.15));
+}
+
+.ampersand {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: $gold;
+  font-style: italic;
+  opacity: 0.8;
+  margin: 0.25rem 0;
+}
+
+.wedding-tagline {
+  font-family: 'Georgia', serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: $lavender;
+  font-style: italic;
+  margin: 0.5rem 0 1.5rem;
+  opacity: 0.9;
+}
+
+.wedding-date {
+  display: block;
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+  letter-spacing: 0.15em;
+  color: $soft-cream;
+  font-weight: 400;
+  position: relative;
+  padding: 0.5rem 0;
+
+  &::before,
+  &::after {
+    content: '—';
+    margin: 0 0.75rem;
+    color: $gold;
+    opacity: 0.6;
+  }
+}
+
+// ─── Countdown ───
+.countdown {
+  width: 100%;
+  max-width: 700px;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.countdown-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1rem;
+  min-width: 80px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($gold, 0.2);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+              0 0 1px rgba($gold, 0.3),
+              inset 0 1px 0 rgba($gold, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba($gold, 0.15),
+                inset 0 1px 0 rgba($gold, 0.2);
+    border-color: rgba($gold, 0.35);
+  }
+}
+
+.countdown-value {
+  font-family: 'Georgia', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1;
+  background: linear-gradient(180deg, $bright-gold, $gold);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 8px rgba($gold, 0.2));
+}
+
+.countdown-label {
+  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: $lavender;
+  opacity: 0.8;
+}
+
+.countdown-separator {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: $gold;
+  opacity: 0.5;
+  padding-bottom: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+// ─── Celebration ───
+.celebration {
+  text-align: center;
+  animation: fadeInUp 1s ease-out, pulse 3s ease-in-out infinite;
+}
+
+.celebration-text {
+  font-family: 'Georgia', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: $bright-gold;
+  margin: 0 0 0.75rem;
+}
+
+.celebration-sub {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: $lavender;
+  margin: 0;
+}
+
+// ─── Love Quote ───
+.love-quote {
+  max-width: 500px;
+  text-align: center;
+  animation: fadeInUp 1.8s ease-out;
+
+  blockquote {
+    margin: 0;
+    padding: 2rem;
+    position: relative;
+
+    &::before {
+      content: '"';
+      position: absolute;
+      top: -0.25rem;
+      left: 0.5rem;
+      font-family: 'Georgia', serif;
+      font-size: 4rem;
+      color: $gold;
+      opacity: 0.3;
+      line-height: 1;
+    }
+  }
+
+  p {
+    font-family: 'Georgia', serif;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-style: italic;
+    color: $soft-cream;
+    line-height: 1.8;
+    margin: 0 0 0.75rem;
+    opacity: 0.85;
+  }
+
+  footer {
+    font-size: 0.85rem;
+    color: $lavender;
+    letter-spacing: 0.1em;
+  }
+}
+
+// ─── Footer ───
+.site-footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  opacity: 0.7;
+
+  .hearts-line {
+    color: $gold;
+    letter-spacing: 0.75em;
+    font-size: 0.75rem;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: $lavender;
+    margin: 0;
+    letter-spacing: 0.05em;
+  }
+}
+
+// ─── Animations ───
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+// ─── Responsive ───
+@media (max-width: 480px) {
+  .countdown-card {
+    min-width: 60px;
+    padding: 1rem 0.5rem;
+  }
+
+  .countdown-separator {
+    padding-bottom: 0.75rem;
+  }
+
+  .notification-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+}

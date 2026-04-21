@@ -1,0 +1,111 @@
+<!-- Click love hearts -->
+<div class="click-hearts" aria-hidden="true">
+  @for (h of clickHearts(); track h.id) {
+    <span
+      class="click-heart"
+      [style.left.px]="h.x"
+      [style.top.px]="h.y"
+    >❤️</span>
+  }
+</div>
+
+<!-- Floating particles background -->
+<div class="particles" aria-hidden="true">
+  @for (p of particles; track p.id) {
+    <span
+      class="particle"
+      [style.left.%]="p.left"
+      [style.animation-delay.s]="p.delay"
+      [style.animation-duration.s]="p.duration"
+      [style.width.px]="p.size"
+      [style.height.px]="p.size"
+    ></span>
+  }
+</div>
+
+<!-- Shooting stars -->
+<div class="shooting-stars" aria-hidden="true">
+  <span class="shooting-star"></span>
+  <span class="shooting-star"></span>
+  <span class="shooting-star"></span>
+</div>
+
+<!-- Notification permission banner -->
+@if (showNotificationBanner() && !notificationEnabled()) {
+  <div class="notification-banner" role="alert">
+    <p>🔔 Get daily midnight countdown notifications!</p>
+    <div class="banner-actions">
+      <button class="btn-enable" (click)="enableNotifications()">Enable Notifications</button>
+      <button class="btn-dismiss" (click)="dismissBanner()" aria-label="Dismiss notification banner">✕</button>
+    </div>
+  </div>
+}
+
+<main class="container">
+  <!-- Hero Section -->
+  <section class="hero" aria-label="Wedding countdown">
+    <div class="ornament top-ornament" aria-hidden="true">✦</div>
+
+    <p class="save-the-date">Save the Date</p>
+
+    <h1 class="couple-names">
+      <span class="name groom">{{ groomName }}</span>
+      <span class="ampersand">&amp;</span>
+      <span class="name bride">{{ brideName }}</span>
+    </h1>
+
+    <p class="wedding-tagline">are getting married</p>
+
+    <time class="wedding-date" [attr.datetime]="weddingDate.toISOString()">
+      August 27, 2026
+    </time>
+
+    <div class="ornament bottom-ornament" aria-hidden="true">✦</div>
+  </section>
+
+  <!-- Countdown Section -->
+  @if (!isWeddingDay()) {
+    <section class="countdown" aria-label="Time remaining until wedding" aria-live="polite">
+      <div class="countdown-grid">
+        <div class="countdown-card">
+          <span class="countdown-value" aria-label="days">{{ pad(timeLeft().days) }}</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-separator" aria-hidden="true">:</div>
+        <div class="countdown-card">
+          <span class="countdown-value" aria-label="hours">{{ pad(timeLeft().hours) }}</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-separator" aria-hidden="true">:</div>
+        <div class="countdown-card">
+          <span class="countdown-value" aria-label="minutes">{{ pad(timeLeft().minutes) }}</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-separator" aria-hidden="true">:</div>
+        <div class="countdown-card">
+          <span class="countdown-value" aria-label="seconds">{{ pad(timeLeft().seconds) }}</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    </section>
+  } @else {
+    <section class="celebration" aria-label="Wedding day celebration">
+      <h2 class="celebration-text">🎉 Today is the Day! 🎉</h2>
+      <p class="celebration-sub">Wishing Nithin &amp; Neeraja a lifetime of love and happiness</p>
+    </section>
+  }
+
+  <!-- Love Quote -->
+  <section class="love-quote" aria-label="Love quote">
+    <blockquote>
+      <p>"In all the world, there is no heart for me like yours."</p>
+      <!-- <footer>— Maya Angelou</footer> -->
+    </blockquote>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p class="hearts-line" aria-hidden="true">♥ ♥ ♥</p>
+    <p>Made with love, for our special day</p>
+  </footer>
+</main>
