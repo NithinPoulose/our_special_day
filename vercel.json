@@ -1,6 +1,7 @@
 {
-  "buildCommand": "ng build --configuration production",
-  "outputDirectory": "dist/our-special-day/browser",
+  "framework": null,
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": "dist/our-special-day",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
