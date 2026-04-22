@@ -10,16 +10,7 @@ const {
   formatSecondOfDay,
   getTimeParts,
 } = require('../_lib/push-schedule');
-
-function isAuthorizedRequest(req) {
-  const secret = process.env.CRON_SECRET;
-
-  if (!secret) {
-    return true;
-  }
-
-  return req.headers.authorization === `Bearer ${secret}`;
-}
+const { getAuthorizationError, isAuthorizedRequest } = require('../_lib/push-security');
 
 function getDateKeyFromRequest(req) {
   if (typeof req.query?.date === 'string') {
@@ -44,7 +35,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (!isAuthorizedRequest(req)) {
-    return res.status(401).json({ error: 'Unauthorized.' });
+    return res.status(401).json({ error: getAuthorizationError() });
   }
 
   try {

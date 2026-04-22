@@ -1,6 +1,8 @@
 const { Redis } = require('@upstash/redis');
+const { sanitizePushSubscription } = require('./push-security');
 
 const SUBSCRIPTIONS_KEY = 'push:subscriptions';
+const DEFAULT_MAX_STORED_SUBSCRIPTIONS = 250;
 
 function getRedisClient() {
   const url = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
@@ -13,14 +15,18 @@ function getRedisClient() {
   return new Redis({ url, token });
 }
 
+function getMaxStoredSubscriptions() {
+  const configuredLimit = Number.parseInt(process.env.MAX_STORED_PUSH_SUBSCRIPTIONS ?? '', 10);
+
+  if (Number.isInteger(configuredLimit) && configuredLimit > 0) {
+    return configuredLimit;
+  }
+
+  return DEFAULT_MAX_STORED_SUBSCRIPTIONS;
+}
+
 function isValidStoredSubscription(value) {
-  return Boolean(
-    value &&
-      typeof value.endpoint === 'string' &&
-      value.keys &&
-      typeof value.keys.auth === 'string' &&
-      typeof value.keys.p256dh === 'string'
-  );
+  return Boolean(sanitizePushSubscription(value));
 }
 
 async function getStoredSubscriptions() {
@@ -36,7 +42,7 @@ async function getStoredSubscriptions() {
     return [];
   }
 
-  return subscriptions.filter(isValidStoredSubscription);
+  return subscriptions.map(sanitizePushSubscription).filter(Boolean);
 }
 
 async function saveStoredSubscriptions(subscriptions) {
@@ -48,16 +54,26 @@ async function saveStoredSubscriptions(subscriptions) {
     );
   }
 
+  if (subscriptions.length > getMaxStoredSubscriptions()) {
+    throw new Error('Push subscription limit reached. Remove inactive subscriptions or raise MAX_STORED_PUSH_SUBSCRIPTIONS.');
+  }
+
   await redis.set(SUBSCRIPTIONS_KEY, subscriptions);
 }
 
 async function upsertStoredSubscription(subscription) {
+  const sanitizedSubscription = sanitizePushSubscription(subscription);
+
+  if (!sanitizedSubscription) {
+    throw new Error('Invalid push subscription payload.');
+  }
+
   const currentSubscriptions = await getStoredSubscriptions();
   const nextSubscriptions = currentSubscriptions.filter(
-    (currentSubscription) => currentSubscription.endpoint !== subscription.endpoint
+    (currentSubscription) => currentSubscription.endpoint !== sanitizedSubscription.endpoint
   );
 
-  nextSubscriptions.push(subscription);
+  nextSubscriptions.push(sanitizedSubscription);
   await saveStoredSubscriptions(nextSubscriptions);
 
   return nextSubscriptions;

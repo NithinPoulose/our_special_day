@@ -1,10 +1,34 @@
 /// Service Worker for background web push notifications
 
+function toSafeAppUrl(value) {
+  if (typeof value !== 'string') {
+    return `${self.location.origin}/`;
+  }
+
+  const normalizedValue = value.trim();
+
+  if (!normalizedValue || !normalizedValue.startsWith('/') || normalizedValue.startsWith('//')) {
+    return `${self.location.origin}/`;
+  }
+
+  try {
+    const parsedUrl = new URL(normalizedValue, self.location.origin);
+
+    if (parsedUrl.origin !== self.location.origin) {
+      return `${self.location.origin}/`;
+    }
+
+    return parsedUrl.toString();
+  } catch {
+    return `${self.location.origin}/`;
+  }
+}
+
 function showNotification(payload = {}) {
   const title = payload.title || '💕 Nithin & Neeraja';
   const body = payload.body || 'A new love note is waiting for you.';
   const tag = payload.tag || 'wedding-countdown';
-  const url = payload.url || '/';
+  const url = toSafeAppUrl(payload.url);
 
   return self.registration.showNotification(title, {
     body,
@@ -54,12 +78,12 @@ self.addEventListener('message', (event) => {
 // Handle notification click — focus or open the app
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const targetUrl = event.notification.data?.url || '/';
+  const targetUrl = toSafeAppUrl(event.notification.data?.url);
 
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clients) => {
       for (const client of clients) {
-        if (client.url && 'focus' in client) {
+        if (client.url === targetUrl && 'focus' in client) {
           return client.focus();
         }
       }

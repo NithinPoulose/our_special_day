@@ -3,16 +3,7 @@ const {
   createCountdownPayload,
   ensureWebPushConfigured,
 } = require('../_lib/push-notifications');
-
-function isAuthorizedRequest(req) {
-  const secret = process.env.CRON_SECRET;
-
-  if (!secret) {
-    return true;
-  }
-
-  return req.headers.authorization === `Bearer ${secret}`;
-}
+const { getAuthorizationError, isAuthorizedRequest } = require('../_lib/push-security');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -21,7 +12,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (!isAuthorizedRequest(req)) {
-    return res.status(401).json({ error: 'Unauthorized.' });
+    return res.status(401).json({ error: getAuthorizationError() });
   }
 
   try {

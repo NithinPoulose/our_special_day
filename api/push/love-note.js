@@ -4,6 +4,7 @@ const {
   ensureWebPushConfigured,
 } = require('../_lib/push-notifications');
 const { getRedisClient } = require('../_lib/push-store');
+const { getAuthorizationError, isAuthorizedRequest } = require('../_lib/push-security');
 
 const RANDOM_NOTE_STATE_KEY = 'push:love-note-state';
 const PUSH_TIME_ZONE = process.env.PUSH_TIME_ZONE ?? 'Asia/Kolkata';
@@ -83,16 +84,6 @@ async function getDailyRandomState() {
   return { redis, state: nextState };
 }
 
-function isAuthorizedRequest(req) {
-  const secret = process.env.CRON_SECRET;
-
-  if (!secret) {
-    return true;
-  }
-
-  return req.headers.authorization === `Bearer ${secret}`;
-}
-
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
@@ -100,7 +91,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (!isAuthorizedRequest(req)) {
-    return res.status(401).json({ error: 'Unauthorized.' });
+    return res.status(401).json({ error: getAuthorizationError() });
   }
 
   try {

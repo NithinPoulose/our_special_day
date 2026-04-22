@@ -2,20 +2,12 @@ const {
   broadcastPushNotification,
   ensureWebPushConfigured,
 } = require('../_lib/push-notifications');
-
-function isAuthorizedRequest(req) {
-  const secret = process.env.CRON_SECRET;
-
-  if (!secret) {
-    return true;
-  }
-
-  return req.headers.authorization === `Bearer ${secret}`;
-}
-
-function toOptionalString(value) {
-  return typeof value === 'string' && value.trim() ? value.trim() : undefined;
-}
+const {
+  getAuthorizationError,
+  isAuthorizedRequest,
+  toOptionalString,
+  toSafeAppPath,
+} = require('../_lib/push-security');
 
 function getPayloadFromRequest(req) {
   const body = req.body && typeof req.body === 'object' ? req.body : null;
@@ -26,8 +18,9 @@ function getPayloadFromRequest(req) {
 
   const title = toOptionalString(body.title);
   const bodyText = toOptionalString(body.body);
+  const url = toSafeAppPath(body.url);
 
-  if (!title || !bodyText) {
+  if (!title || !bodyText || !url) {
     return null;
   }
 
@@ -35,7 +28,7 @@ function getPayloadFromRequest(req) {
     title,
     body: bodyText,
     tag: toOptionalString(body.tag) ?? 'scheduled-reminder',
-    url: toOptionalString(body.url) ?? '/',
+    url,
   };
 }
 
@@ -46,14 +39,14 @@ module.exports = async function handler(req, res) {
   }
 
   if (!isAuthorizedRequest(req)) {
-    return res.status(401).json({ error: 'Unauthorized.' });
+    return res.status(401).json({ error: getAuthorizationError() });
   }
 
   const payload = getPayloadFromRequest(req);
 
   if (!payload) {
     return res.status(400).json({
-      error: 'Invalid reminder payload. Provide title and body as strings.',
+      error: 'Invalid reminder payload. Provide title and body as strings and an optional same-origin path starting with /.',
     });
   }
 

@@ -1,5 +1,6 @@
 const { upsertStoredSubscription } = require('../_lib/push-store');
 const { ensureWebPushConfigured } = require('../_lib/push-notifications');
+const { sanitizePushSubscription } = require('../_lib/push-security');
 
 function parseRequestBody(req) {
   if (typeof req.body === 'string') {
@@ -12,17 +13,6 @@ function parseRequestBody(req) {
 
   return req.body ?? null;
 }
-
-function isValidSubscription(value) {
-  return Boolean(
-    value &&
-      typeof value.endpoint === 'string' &&
-      value.keys &&
-      typeof value.keys.auth === 'string' &&
-      typeof value.keys.p256dh === 'string'
-  );
-}
-
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -32,9 +22,9 @@ module.exports = async function handler(req, res) {
   try {
     ensureWebPushConfigured();
 
-    const subscription = parseRequestBody(req);
+    const subscription = sanitizePushSubscription(parseRequestBody(req));
 
-    if (!isValidSubscription(subscription)) {
+    if (!subscription) {
       return res.status(400).json({ error: 'Invalid push subscription payload.' });
     }
 

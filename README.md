@@ -36,6 +36,14 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Push Notification Configuration
+
+The push notification endpoints are locked down by default.
+
+- `CRON_SECRET` is required for the scheduled push endpoints under `api/push/*` that send notifications.
+- `WEB_PUSH_PUBLIC_KEY` and `WEB_PUSH_PRIVATE_KEY` are required to enable browser push subscriptions and delivery.
+- `MAX_STORED_PUSH_SUBSCRIPTIONS` is optional and defaults to `250` to prevent unbounded subscription growth.
+
 ## Running unit tests
 
 To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
