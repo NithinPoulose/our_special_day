@@ -31,11 +31,13 @@
 </div>
 
 <!-- Notification permission banner -->
-@if (showNotificationBanner() && !notificationEnabled()) {
+@if (showNotificationBanner() && notificationSupported() && !notificationEnabled()) {
   <div class="notification-banner" role="alert">
-    <p>🔔 Get daily midnight countdown notifications!</p>
+    <p>
+      {{ notificationMessage() ?? '🔔 Enable browser push notifications that still arrive after Chrome is closed.' }}
+    </p>
     <div class="banner-actions">
-      <button class="btn-enable" (click)="enableNotifications()">Enable Notifications</button>
+      <button class="btn-enable" (click)="enableNotifications()">Enable Push Notifications</button>
       <button class="btn-dismiss" (click)="dismissBanner()" aria-label="Dismiss notification banner">✕</button>
     </div>
   </div>

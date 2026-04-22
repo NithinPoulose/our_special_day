@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:vercel": "ng build --configuration production && node scripts/prepare-vercel-output.mjs",
+    "push:generate-vapid": "node scripts/generate-vapid-keys.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -18,8 +19,10 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
+    "@upstash/redis": "^1.35.3",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "@angular/build": "^21.2.7",

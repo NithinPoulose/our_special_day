@@ -1,8 +1,33 @@
-/// Service Worker for push-style notifications on mobile browsers
+/// Service Worker for background web push notifications
 
-const WEDDING_DATE = '2026-08-27T00:00:00';
-const GROOM = 'Nithin';
-const BRIDE = 'Neeraja';
+function showNotification(payload = {}) {
+  const title = payload.title || '💕 Nithin & Neeraja';
+  const body = payload.body || 'A new love note is waiting for you.';
+  const tag = payload.tag || 'wedding-countdown';
+  const url = payload.url || '/';
+
+  return self.registration.showNotification(title, {
+    body,
+    icon: '/favicon.ico',
+    badge: '/favicon.ico',
+    tag,
+    renotify: true,
+    requireInteraction: false,
+    data: { url },
+  });
+}
+
+function readPushPayload(event) {
+  if (!event.data) {
+    return {};
+  }
+
+  try {
+    return event.data.json();
+  } catch {
+    return { body: event.data.text() };
+  }
+}
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -13,25 +38,24 @@ self.addEventListener('activate', (event) => {
 });
 
 // Listen for messages from the app to show notifications
+self.addEventListener('push', (event) => {
+  const payload = readPushPayload(event);
+  event.waitUntil(showNotification(payload));
+});
+
 self.addEventListener('message', (event) => {
-  const { type, title, body, tag } = event.data || {};
+  const { type, title, body, tag, url } = event.data || {};
+
   if (type === 'SHOW_NOTIFICATION') {
-    event.waitUntil(
-      self.registration.showNotification(title, {
-        body,
-        icon: 'favicon.ico',
-        badge: 'favicon.ico',
-        tag: tag || 'wedding-countdown',
-        renotify: true,
-        requireInteraction: false,
-      })
-    );
+    event.waitUntil(showNotification({ title, body, tag, url }));
   }
 });
 
 // Handle notification click — focus or open the app
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
+  const targetUrl = event.notification.data?.url || '/';
+
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clients) => {
       for (const client of clients) {
@@ -39,7 +63,7 @@ self.addEventListener('notificationclick', (event) => {
           return client.focus();
         }
       }
-      return self.clients.openWindow('/');
+      return self.clients.openWindow(targetUrl);
     })
   );
 });

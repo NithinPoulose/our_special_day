@@ -45,7 +45,9 @@ export class App implements OnInit, OnDestroy {
     return t.days === 0 && t.hours === 0 && t.minutes === 0 && t.seconds === 0;
   });
 
-  protected readonly notificationEnabled = this.notificationService.permissionGranted;
+  protected readonly notificationEnabled = this.notificationService.subscriptionActive;
+  protected readonly notificationSupported = this.notificationService.pushSupported;
+  protected readonly notificationMessage = this.notificationService.statusMessage;
 
   protected readonly showNotificationBanner = signal(true);
 
@@ -89,8 +91,11 @@ export class App implements OnInit, OnDestroy {
   }
 
   protected async enableNotifications(): Promise<void> {
-    await this.notificationService.requestPermission();
-    this.showNotificationBanner.set(false);
+    const enabled = await this.notificationService.requestPermission();
+
+    if (enabled) {
+      this.showNotificationBanner.set(false);
+    }
   }
 
   protected dismissBanner(): void {

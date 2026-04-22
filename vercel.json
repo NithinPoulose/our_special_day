@@ -2,8 +2,27 @@
   "framework": null,
   "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist/our-special-day",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "crons": [
+    {
+      "path": "/api/push/countdown",
+      "schedule": "30 18 * * *"
+    },
+    {
+      "path": "/api/push/love-note",
+      "schedule": "*/5 4-16 * * *"
+    },
+    {
+      "path": "/api/push/special-today",
+      "schedule": "45 10 22 4 *"
+    },
+    {
+      "path": "/api/push/special-today",
+      "schedule": "50 10 22 4 *"
+    },
+    {
+      "path": "/api/push/special-today",
+      "schedule": "0 11 22 4 *"
+    }
   ],
   "headers": [
     {
