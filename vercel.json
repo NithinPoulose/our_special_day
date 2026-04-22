@@ -4,16 +4,8 @@
   "outputDirectory": "dist/our-special-day",
   "crons": [
     {
-      "path": "/api/push/countdown",
-      "schedule": "30 18 * * *"
-    },
-    {
-      "path": "/api/push/love-note",
-      "schedule": "*/5 4-16 * * *"
-    },
-    {
       "path": "/api/push/special-today",
-      "schedule": "0 11 22 4 *"
+      "schedule": "*/5 * * * *"
     }
   ],
   "headers": [

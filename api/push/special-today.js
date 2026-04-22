@@ -1,19 +1,23 @@
 const {
   broadcastPushNotification,
+  createCountdownPayload,
+  createLoveNotePayload,
   ensureWebPushConfigured,
 } = require('../_lib/push-notifications');
 const { getRedisClient } = require('../_lib/push-store');
 
 const PUSH_TIME_ZONE = process.env.PUSH_TIME_ZONE ?? 'Asia/Kolkata';
 const SPECIAL_DATE_KEY = '2026-04-22';
-const TARGETS = [
-  {
-    minuteOfDay: 16 * 60 + 30,
-    title: '🌙 Evening Love Note',
-    body: '4:30 already... sending one more hug through Chrome before the evening begins! 🫶',
-    key: '1630',
-  },
-];
+const COUNTDOWN_START_DATE_KEY = '2026-04-23';
+const RANDOM_WINDOW_START_MINUTE = 10 * 60;
+const RANDOM_WINDOW_END_MINUTE = 22 * 60;
+const RANDOM_INTERVAL_MINUTES = 5;
+const SPECIAL_TARGET = {
+  minuteOfDay: 16 * 60 + 55,
+  title: '🌙 Evening Love Note',
+  body: '4:55 already... sending one special love note through Chrome just to verify it is working! 🫶',
+  key: '1655',
+};
 
 function getTimeParts(now = new Date()) {
   const formatter = new Intl.DateTimeFormat('en-CA', {
@@ -41,6 +45,40 @@ function formatMinuteOfDay(minuteOfDay) {
   const minutes = String(minuteOfDay % 60).padStart(2, '0');
 
   return `${hours}:${minutes}`;
+}
+
+function isInFiveMinuteWindow(minuteOfDay, targetMinuteOfDay) {
+  return minuteOfDay >= targetMinuteOfDay && minuteOfDay < targetMinuteOfDay + 5;
+}
+
+function createRandomTargetMinute() {
+  const totalSteps =
+    (RANDOM_WINDOW_END_MINUTE - RANDOM_WINDOW_START_MINUTE) / RANDOM_INTERVAL_MINUTES;
+  const randomStep = Math.floor(Math.random() * (totalSteps + 1));
+
+  return RANDOM_WINDOW_START_MINUTE + randomStep * RANDOM_INTERVAL_MINUTES;
+}
+
+function isValidRandomState(value) {
+  return Boolean(value && Number.isInteger(value.targetMinute) && typeof value.sent === 'boolean');
+}
+
+async function getDailyRandomState(redis, dateKey) {
+  const stateKey = `push:random-love-note:${dateKey}`;
+  const storedState = await redis.get(stateKey);
+
+  if (isValidRandomState(storedState)) {
+    return { stateKey, state: storedState };
+  }
+
+  const nextState = {
+    targetMinute: createRandomTargetMinute(),
+    sent: false,
+  };
+
+  await redis.set(stateKey, nextState);
+
+  return { stateKey, state: nextState };
 }
 
 function isAuthorizedRequest(req) {
@@ -76,56 +114,125 @@ module.exports = async function handler(req, res) {
 
     const { dateKey, minuteOfDay } = getTimeParts();
 
-    if (dateKey !== SPECIAL_DATE_KEY) {
+    if (dateKey === SPECIAL_DATE_KEY && isInFiveMinuteWindow(minuteOfDay, SPECIAL_TARGET.minuteOfDay)) {
+      const sentStateKey = `push:special:${SPECIAL_DATE_KEY}:${SPECIAL_TARGET.key}`;
+      const alreadySent = await redis.get(sentStateKey);
+
+      if (alreadySent) {
+        return res.status(200).json({
+          ok: true,
+          skipped: 'already-sent',
+          targetTime: formatMinuteOfDay(SPECIAL_TARGET.minuteOfDay),
+          timeZone: PUSH_TIME_ZONE,
+        });
+      }
+
+      const result = await broadcastPushNotification({
+        title: SPECIAL_TARGET.title,
+        body: SPECIAL_TARGET.body,
+        tag: `special-${SPECIAL_TARGET.key}`,
+        url: '/',
+      });
+
+      await redis.set(sentStateKey, {
+        sent: true,
+        sentAt: formatMinuteOfDay(minuteOfDay),
+      });
+
       return res.status(200).json({
         ok: true,
-        skipped: 'outside-special-date',
+        ...result,
+        targetTime: formatMinuteOfDay(SPECIAL_TARGET.minuteOfDay),
         timeZone: PUSH_TIME_ZONE,
       });
     }
 
-    const target = TARGETS.find(
-      (currentTarget) =>
-        minuteOfDay >= currentTarget.minuteOfDay && minuteOfDay < currentTarget.minuteOfDay + 5
-    );
+    if (
+      dateKey >= COUNTDOWN_START_DATE_KEY &&
+      isInFiveMinuteWindow(minuteOfDay, 0)
+    ) {
+      const sentStateKey = `push:countdown:${dateKey}`;
+      const alreadySent = await redis.get(sentStateKey);
 
-    if (!target) {
+      if (alreadySent) {
+        return res.status(200).json({
+          ok: true,
+          skipped: 'already-sent',
+          targetTime: '00:00',
+          timeZone: PUSH_TIME_ZONE,
+        });
+      }
+
+      const result = await broadcastPushNotification(createCountdownPayload());
+
+      await redis.set(sentStateKey, {
+        sent: true,
+        sentAt: formatMinuteOfDay(minuteOfDay),
+      });
+
       return res.status(200).json({
         ok: true,
-        skipped: 'outside-special-window',
-        currentTime: formatMinuteOfDay(minuteOfDay),
+        ...result,
+        targetTime: '00:00',
         timeZone: PUSH_TIME_ZONE,
       });
     }
 
-    const sentStateKey = `push:special:${SPECIAL_DATE_KEY}:${target.key}`;
-    const alreadySent = await redis.get(sentStateKey);
+    if (dateKey >= COUNTDOWN_START_DATE_KEY) {
+      const { stateKey, state } = await getDailyRandomState(redis, dateKey);
 
-    if (alreadySent) {
+      if (state.sent) {
+        return res.status(200).json({
+          ok: true,
+          skipped: 'already-sent',
+          targetTime: formatMinuteOfDay(state.targetMinute),
+          timeZone: PUSH_TIME_ZONE,
+        });
+      }
+
+      if (isInFiveMinuteWindow(minuteOfDay, state.targetMinute)) {
+        const result = await broadcastPushNotification(createLoveNotePayload());
+
+        await redis.set(stateKey, {
+          ...state,
+          sent: true,
+          sentAt: formatMinuteOfDay(minuteOfDay),
+        });
+
+        return res.status(200).json({
+          ok: true,
+          ...result,
+          targetTime: formatMinuteOfDay(state.targetMinute),
+          timeZone: PUSH_TIME_ZONE,
+        });
+      }
+
+      if (
+        minuteOfDay >= RANDOM_WINDOW_START_MINUTE &&
+        minuteOfDay < RANDOM_WINDOW_END_MINUTE + RANDOM_INTERVAL_MINUTES
+      ) {
+        return res.status(200).json({
+          ok: true,
+          skipped: 'waiting-for-random-window',
+          targetTime: formatMinuteOfDay(state.targetMinute),
+          currentTime: formatMinuteOfDay(minuteOfDay),
+          timeZone: PUSH_TIME_ZONE,
+        });
+      }
+    }
+
+    if (dateKey < SPECIAL_DATE_KEY) {
       return res.status(200).json({
         ok: true,
-        skipped: 'already-sent',
-        targetTime: formatMinuteOfDay(target.minuteOfDay),
+        skipped: 'before-schedule-window',
         timeZone: PUSH_TIME_ZONE,
       });
     }
-
-    const result = await broadcastPushNotification({
-      title: target.title,
-      body: target.body,
-      tag: `special-${target.key}`,
-      url: '/',
-    });
-
-    await redis.set(sentStateKey, {
-      sent: true,
-      sentAt: formatMinuteOfDay(minuteOfDay),
-    });
 
     return res.status(200).json({
       ok: true,
-      ...result,
-      targetTime: formatMinuteOfDay(target.minuteOfDay),
+      skipped: 'outside-send-window',
+      currentTime: formatMinuteOfDay(minuteOfDay),
       timeZone: PUSH_TIME_ZONE,
     });
   } catch (error) {
@@ -133,7 +240,7 @@ module.exports = async function handler(req, res) {
       error:
         error instanceof Error
           ? error.message
-          : 'Unable to send the special push notification.',
+          : 'Unable to send the scheduled push notification.',
     });
   }
 };

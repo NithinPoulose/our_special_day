@@ -1,9 +1,5 @@
 const { upsertStoredSubscription } = require('../_lib/push-store');
-const {
-  createWelcomePayload,
-  ensureWebPushConfigured,
-  sendPushToSubscription,
-} = require('../_lib/push-notifications');
+const { ensureWebPushConfigured } = require('../_lib/push-notifications');
 
 function parseRequestBody(req) {
   if (typeof req.body === 'string') {
@@ -43,7 +39,6 @@ module.exports = async function handler(req, res) {
     }
 
     await upsertStoredSubscription(subscription);
-    await sendPushToSubscription(subscription, createWelcomePayload());
 
     return res.status(201).json({ ok: true });
   } catch (error) {
