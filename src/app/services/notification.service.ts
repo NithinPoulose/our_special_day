@@ -70,9 +70,7 @@ export class NotificationService {
 
       await this.saveSubscription(subscription);
       this.subscriptionActive.set(true);
-      this.statusMessage.set(
-        'Push notifications are enabled. A welcome notification is on the way.'
-      );
+      this.statusMessage.set('Push notifications are enabled.');
 
       return true;
     } catch (error) {

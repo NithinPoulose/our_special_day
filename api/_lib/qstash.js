@@ -1,4 +1,5 @@
-const QSTASH_BASE_URL = process.env.QSTASH_BASE_URL ?? 'https://qstash.upstash.io';
+const QSTASH_BASE_URL =
+  process.env.QSTASH_URL ?? process.env.QSTASH_BASE_URL ?? 'https://qstash.upstash.io';
 
 function ensureQStashConfigured() {
   const token = process.env.QSTASH_TOKEN;
