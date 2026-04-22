@@ -1,0 +1,21 @@
+{
+  "name": "Nithin & Neeraja Wedding",
+  "short_name": "N & N Wedding",
+  "description": "Wedding countdown for Nithin & Neeraja — August 27, 2026",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a0a2e",
+  "theme_color": "#b76e79",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
