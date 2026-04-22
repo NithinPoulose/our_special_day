@@ -8,19 +8,19 @@ const { PUSH_TIME_ZONE, formatMinuteOfDay, getTimeParts } = require('../_lib/pus
 // Customize your notification here
 const customNotifications = [
   {
-    hour: 21,
-    minute: 45,
-    title: 'Cute Night Reminder',
-    body: 'Here’s a cute reminder for you at 9:45pm! 💖',
-    tag: 'custom-cute-945',
+    hour: 10,
+    minute: 5,
+    title: 'Cute Morning Reminder',
+    body: 'Here’s a cute reminder for you at 10:05am! 💖',
+    tag: 'custom-cute-1005',
     url: '/special',
   },
   {
-    hour: 21,
-    minute: 50,
-    title: 'Extra Cute Night!',
-    body: 'Here’s an extra cute reminder at 9:50pm! 🥰',
-    tag: 'custom-cute-950',
+    hour: 10,
+    minute: 20,
+    title: 'Extra Cute Morning!',
+    body: 'Here’s an extra cute reminder at 10:20am! 🥰',
+    tag: 'custom-cute-1020',
     url: '/special',
   },
 ];
