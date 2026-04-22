@@ -13,14 +13,6 @@
     },
     {
       "path": "/api/push/special-today",
-      "schedule": "45 10 22 4 *"
-    },
-    {
-      "path": "/api/push/special-today",
-      "schedule": "50 10 22 4 *"
-    },
-    {
-      "path": "/api/push/special-today",
       "schedule": "0 11 22 4 *"
     }
   ],

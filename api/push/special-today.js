@@ -8,18 +8,6 @@ const PUSH_TIME_ZONE = process.env.PUSH_TIME_ZONE ?? 'Asia/Kolkata';
 const SPECIAL_DATE_KEY = '2026-04-22';
 const TARGETS = [
   {
-    minuteOfDay: 16 * 60 + 15,
-    title: '💕 Nithin & Neeraja',
-    body: 'Just a little 4:15 love note... 127 days to go, and my heart is already with you! ✨',
-    key: '1615',
-  },
-  {
-    minuteOfDay: 16 * 60 + 20,
-    title: '💍 Sweet Countdown Moment',
-    body: '4:20 and still thinking of you... our forever is getting closer every minute! 💫',
-    key: '1620',
-  },
-  {
     minuteOfDay: 16 * 60 + 30,
     title: '🌙 Evening Love Note',
     body: '4:30 already... sending one more hug through Chrome before the evening begins! 🫶',
