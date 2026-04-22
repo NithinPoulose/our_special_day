@@ -85,9 +85,11 @@ export class NotificationService {
 
   private scheduleOneTime(): void {
     const targets = [
-      { time: '2026-04-22T15:10:00', title: '💕 Nithin & Neeraja', body: '127 days to go... Every second with you is a gift! ✨' },
-      { time: '2026-04-22T15:12:00', title: '💕 Nithin & Neeraja', body: '127 days to go... Can\'t wait to start forever with you! 💍' },
-      { time: '2026-04-22T15:15:00', title: '💕 Nithin & Neeraja', body: '127 days to go... Goodnight my love, dreaming of our forever! 🌙' },
+      { time: '2026-04-22T15:35:00', title: '💕 Nithin & Neeraja', body: '127 days to go... Every second with you is a gift! ✨' },
+      { time: '2026-04-22T15:40:00', title: '💕 Nithin & Neeraja', body: '127 days to go... Can\'t wait to start forever with you! 💍' },
+      { time: '2026-04-22T15:45:00', title: '💕 Nithin & Neeraja', body: '127 days to go... Every second with you is a gift! ✨' },
+      { time: '2026-04-22T15:48:00', title: '💕 Nithin & Neeraja', body: '127 days to go... Can\'t wait to start forever with you! 💍' },
+      { time: '2026-04-22T15:50:00', title: '💕 Nithin & Neeraja', body: '127 days to go... Goodnight my love, dreaming of our forever! 🌙' },
     ];
     for (const { time, title, body } of targets) {
       const delay = new Date(time).getTime() - Date.now();
