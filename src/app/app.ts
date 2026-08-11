@@ -5,11 +5,12 @@ import { CountdownComponent } from './components/countdown/countdown';
 import { StoryComponent } from './components/story/story';
 import { EventsComponent } from './components/events/events';
 import { FooterComponent } from './components/footer/footer';
+import { AudioPlayerComponent } from './components/audio-player/audio-player';
 
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LandingComponent, HeroComponent, CountdownComponent, StoryComponent, EventsComponent, FooterComponent],
+  imports: [LandingComponent, HeroComponent, CountdownComponent, StoryComponent, EventsComponent, FooterComponent, AudioPlayerComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

@@ -90,7 +90,8 @@
     font-family: 'Playfair Display', serif;
     font-weight: 600;
     font-size: clamp(2.4rem, 5.5vw, 3.8rem);
-    line-height: 1;
+    line-height: 1.1;
+    padding-bottom: 0.08em;
     background: linear-gradient(160deg, var(--charcoal) 20%, var(--gold-dark) 80%);
     background-clip: text;
     -webkit-background-clip: text;

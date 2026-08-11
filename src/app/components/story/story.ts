@@ -54,9 +54,15 @@ export class StoryComponent {
     },
     {
       year: '2026',
-      title: 'Our Wedding',
+      title: 'Official Registration',
       description:
-        'From classmates to soulmates — on August 27th, we make it forever.',
+        'August 24th — before the celebration, the moment we became officially, legally, forever each other\'s.',
+    },
+    {
+      year: '2026',
+      title: 'Wedding Celebration',
+      description:
+        'From classmates to soulmates — on August 27th, surrounded by family and love, we celebrate it with the world.',
     },
   ];
 

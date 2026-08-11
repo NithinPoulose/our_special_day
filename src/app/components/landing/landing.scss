@@ -195,7 +195,8 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  line-height: 0.9;
+  line-height: 1.05;
+  padding-bottom: 0.05em;
 }
 
 .monogram-amp {
@@ -227,7 +228,7 @@
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   font-size: clamp(3rem, 10vw, 6.5rem);
-  line-height: 1;
+  line-height: 1.2;
   color: var(--charcoal);
   display: flex;
   flex-direction: column;
@@ -238,6 +239,7 @@
 
 .landing-name {
   display: block;
+  padding-bottom: 0.12em;
   background: linear-gradient(135deg, var(--charcoal) 0%, var(--gold-dark) 40%, var(--gold) 60%, var(--charcoal) 100%);
   background-size: 200% auto;
   background-clip: text;
