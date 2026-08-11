@@ -1,0 +1,372 @@
+:host {
+  display: block;
+}
+
+.landing {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(176, 141, 87, 0.07) 0%, transparent 70%),
+    linear-gradient(170deg, #faf7f2 0%, #f0ebe3 40%, #ece4d9 70%, #f5ede5 100%);
+}
+
+// Corner ornaments
+.corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.corner {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  animation: cornerFade 2.5s ease 0.5s both;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.45;
+  }
+
+  &--tl {
+    top: 2rem; left: 2rem;
+    border-top: 1px solid var(--gold);
+    border-left: 1px solid var(--gold);
+    opacity: 0.4;
+    &::after { bottom: -2px; right: -2px; }
+  }
+  &--tr {
+    top: 2rem; right: 2rem;
+    border-top: 1px solid var(--gold);
+    border-right: 1px solid var(--gold);
+    opacity: 0.4;
+    &::after { bottom: -2px; left: -2px; }
+  }
+  &--bl {
+    bottom: 2rem; left: 2rem;
+    border-bottom: 1px solid var(--gold);
+    border-left: 1px solid var(--gold);
+    opacity: 0.4;
+    &::after { top: -2px; right: -2px; }
+  }
+  &--br {
+    bottom: 2rem; right: 2rem;
+    border-bottom: 1px solid var(--gold);
+    border-right: 1px solid var(--gold);
+    opacity: 0.4;
+    &::after { top: -2px; left: -2px; }
+  }
+}
+
+// Decorative rings
+.rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(176, 141, 87, 0.12);
+
+  &--1 {
+    width: 320px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ringPulse 4s ease-in-out infinite;
+  }
+
+  &--2 {
+    width: 480px;
+    height: 480px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ringPulse 4s ease-in-out 0.8s infinite;
+    border-color: rgba(176, 141, 87, 0.08);
+  }
+
+  &--3 {
+    width: 640px;
+    height: 640px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ringPulse 4s ease-in-out 1.6s infinite;
+    border-color: rgba(176, 141, 87, 0.05);
+  }
+
+  &--4 {
+    width: 820px;
+    height: 820px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ringPulse 6s ease-in-out 2.4s infinite;
+    border-color: rgba(176, 141, 87, 0.03);
+  }
+}
+
+// Floating petals
+.petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  background: rgba(176, 141, 87, 0.2);
+  border-radius: 50% 50% 50% 0;
+  animation: petalFall linear infinite;
+
+  &--1 { left: 15%; animation-duration: 12s; animation-delay: 0s; }
+  &--2 { left: 35%; animation-duration: 15s; animation-delay: 2s; width: 6px; height: 9px; }
+  &--3 { left: 55%; animation-duration: 11s; animation-delay: 4s; }
+  &--4 { left: 75%; animation-duration: 14s; animation-delay: 1s; width: 7px; height: 10px; }
+  &--5 { left: 90%; animation-duration: 13s; animation-delay: 3s; width: 5px; height: 8px; }
+  &--6 { left: 25%; animation-duration: 16s; animation-delay: 5s;  width: 6px;  height: 9px;  opacity: 0.6; }
+  &--7 { left: 48%; animation-duration: 13s; animation-delay: 7s;  width: 5px;  height: 7px;  opacity: 0.5; }
+  &--8 { left: 68%; animation-duration: 18s; animation-delay: 9.5s; width: 4px; height: 6px;  opacity: 0.4; }
+}
+
+// Content
+.landing-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 1.5s ease both;
+}
+
+// Monogram graphic
+.monogram-graphic {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  margin: 0 auto 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 2s ease 0.3s both;
+}
+
+.monogram-rings {
+  position: absolute;
+  inset: 0;
+  animation: monogramSpin 25s linear infinite;
+}
+
+.monogram-rings-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.monogram-letters {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  line-height: 1;
+}
+
+.monogram-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.4rem;
+  font-weight: 400;
+  background: linear-gradient(135deg, #8c6d3f, #b08d57, #d4b896, #b08d57);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  line-height: 0.9;
+}
+
+.monogram-amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gold);
+  opacity: 0.65;
+  line-height: 1.2;
+}
+
+@keyframes monogramSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.landing-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 2.5rem;
+  opacity: 0.7;
+}
+
+.landing-names {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  line-height: 1;
+  color: var(--charcoal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.landing-name {
+  display: block;
+  background: linear-gradient(135deg, var(--charcoal) 0%, var(--gold-dark) 40%, var(--gold) 60%, var(--charcoal) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear 1.5s infinite;
+}
+
+.landing-amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.35em;
+  color: var(--gold);
+  opacity: 0.7;
+  line-height: 2;
+}
+
+.landing-date {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  color: var(--gold-dark);
+  margin-bottom: 1.5rem;
+}
+
+.landing-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+
+  &__line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(176, 141, 87, 0.5), transparent);
+  }
+
+  &__gem {
+    font-size: 0.45rem;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+}
+
+.landing-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeIn 2s ease 2.2s both;
+
+  &__label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dark);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      animation: lineDrawIn 1.4s cubic-bezier(0.4, 0, 0.2, 1) 3.5s both;
+    }
+  }
+
+  &__pulse {
+    display: block;
+    width: 1px;
+    height: 26px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: pulseGlow 2.8s ease-in-out 3.5s infinite;
+  }
+}
+
+// Animations
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.03); }
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.3; }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes cornerFade {
+  from { opacity: 0; }
+  to   { opacity: 0.4; }
+}
+
+@keyframes lineDrawIn {
+  from { width: 0;    opacity: 0; }
+  to   { width: 70px; opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 0.9; transform: scaleY(1.25); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

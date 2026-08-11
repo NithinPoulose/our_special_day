@@ -1,0 +1,174 @@
+:host { display: block; }
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem 7rem;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(176, 141, 87, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 80%, rgba(212, 184, 150, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, var(--cream) 0%, var(--ivory-dark) 100%);
+}
+
+.bokeh-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bokeh {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 38%, rgba(176, 141, 87, 0.25), rgba(176, 141, 87, 0.04) 65%, transparent 85%);
+  filter: blur(3px);
+  animation: bokeh-drift var(--dur, 12s) ease-in-out var(--del, 0s) infinite;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  width: 100%;
+}
+
+.hero-crest {
+  margin: 0 auto 1.35rem;
+  color: rgba(176, 141, 87, 0.55);
+  animation: fadeUp 1.4s ease 0.2s both;
+
+  &__svg {
+    width: clamp(240px, 52vw, 340px);
+    height: auto;
+  }
+}
+
+.eyebrow {
+  color: var(--gold-dark);
+  opacity: 0.8;
+  margin-bottom: 1.75rem;
+  animation: fadeUp 1.6s ease 0.5s both;
+}
+
+.names {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  line-height: 1.15;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  animation: fadeUp 1.6s ease 0.7s both;
+  overflow: visible;
+}
+
+.name {
+  display: block;
+  padding-bottom: 0.05em;
+  background: linear-gradient(
+    135deg,
+    var(--charcoal) 0%,
+    var(--gold-dark) 35%,
+    var(--gold) 55%,
+    var(--gold-dark) 75%,
+    var(--charcoal) 100%
+  );
+  background-size: 220% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 8s linear 2.5s infinite;
+}
+
+.amp {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.25em;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.7;
+  margin: 0.15em 0;
+}
+
+.subheading {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 2.6vw, 1.3rem);
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+  animation: fadeUp 1.6s ease 0.9s both;
+}
+
+.divider {
+  animation: fadeUp 1.6s ease 1.0s both;
+  margin-bottom: 1.75rem;
+}
+
+.date {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  letter-spacing: 0.35em;
+  color: var(--gold-dark);
+  margin-bottom: 0.7rem;
+  animation: fadeUp 1.6s ease 1.1s both;
+}
+
+.location {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.6;
+  animation: fadeUp 1.6s ease 1.2s both;
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 2.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  animation: fadeIn 2s ease 3s both;
+
+  &:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 8px;
+    border-radius: 2px;
+  }
+
+  &__label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.56rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  &__line {
+    display: block;
+    width: 1px;
+    height: 46px;
+    background: linear-gradient(to bottom, var(--gold) 0%, transparent 100%);
+    animation: float 2.8s ease-in-out infinite;
+  }
+}

@@ -1,0 +1,80 @@
+<div class="cal-wrap">
+  <button
+    class="cal-btn"
+    type="button"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="isOpen()"
+    aria-haspopup="true"
+    aria-label="Add wedding to your calendar"
+  >
+    <svg class="cal-btn__icon" viewBox="0 0 20 20" aria-hidden="true"
+         xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+         stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="16" height="14" rx="2"/>
+      <path d="M2 8h16"/>
+      <path d="M6 2v4M14 2v4"/>
+      <path d="M10 11v3M8.5 12.5h3"/>
+    </svg>
+    Add to Calendar
+    <span class="cal-btn__chevron" aria-hidden="true">{{ isOpen() ? '▴' : '▾' }}</span>
+  </button>
+
+  @if (isOpen()) {
+    <ul class="cal-menu" role="menu" aria-label="Choose calendar app">
+
+      <li role="none">
+        <a class="cal-item" [href]="googleUrl" target="_blank" rel="noopener noreferrer"
+           role="menuitem" (click)="closeMenu()">
+          <span class="cal-badge cal-badge--google" aria-hidden="true">G</span>
+          <span class="cal-text">
+            <span class="cal-name">Google Calendar</span>
+            <span class="cal-hint">Android</span>
+          </span>
+        </a>
+      </li>
+
+      <li role="none">
+        <button class="cal-item" type="button" role="menuitem" (click)="downloadIcs()">
+          <span class="cal-badge cal-badge--apple" aria-hidden="true"></span>
+          <span class="cal-text">
+            <span class="cal-name">Apple Calendar</span>
+            <span class="cal-hint">iOS &amp; macOS</span>
+          </span>
+        </button>
+      </li>
+
+      <li role="none">
+        <a class="cal-item" [href]="outlookUrl" target="_blank" rel="noopener noreferrer"
+           role="menuitem" (click)="closeMenu()">
+          <span class="cal-badge cal-badge--outlook" aria-hidden="true">O</span>
+          <span class="cal-text">
+            <span class="cal-name">Outlook</span>
+            <span class="cal-hint">Windows &amp; Web</span>
+          </span>
+        </a>
+      </li>
+
+      <li role="none">
+        <a class="cal-item" [href]="yahooUrl" target="_blank" rel="noopener noreferrer"
+           role="menuitem" (click)="closeMenu()">
+          <span class="cal-badge cal-badge--yahoo" aria-hidden="true">Y!</span>
+          <span class="cal-text">
+            <span class="cal-name">Yahoo Calendar</span>
+            <span class="cal-hint">Web</span>
+          </span>
+        </a>
+      </li>
+
+      <li role="none" class="cal-sep">
+        <button class="cal-item" type="button" role="menuitem" (click)="downloadIcs()">
+          <span class="cal-badge cal-badge--ics" aria-hidden="true">↓</span>
+          <span class="cal-text">
+            <span class="cal-name">Download .ics</span>
+            <span class="cal-hint">All calendar apps</span>
+          </span>
+        </button>
+      </li>
+
+    </ul>
+  }
+</div>

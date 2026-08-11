@@ -1,0 +1,90 @@
+<section class="landing" aria-label="Wedding invitation cover">
+
+  <!-- Corner ornaments -->
+  <div class="corners" aria-hidden="true">
+    <span class="corner corner--tl"></span>
+    <span class="corner corner--tr"></span>
+    <span class="corner corner--bl"></span>
+    <span class="corner corner--br"></span>
+  </div>
+
+  <!-- Soft floating rings -->
+  <div class="rings" aria-hidden="true">
+    <span class="ring ring--1"></span>
+    <span class="ring ring--2"></span>
+    <span class="ring ring--3"></span>
+    <span class="ring ring--4"></span>
+  </div>
+
+  <!-- Floating gold particles -->
+  <div class="petals" aria-hidden="true">
+    <span class="petal petal--1"></span>
+    <span class="petal petal--2"></span>
+    <span class="petal petal--3"></span>
+    <span class="petal petal--4"></span>
+    <span class="petal petal--5"></span>
+    <span class="petal petal--6"></span>
+    <span class="petal petal--7"></span>
+    <span class="petal petal--8"></span>
+  </div>
+
+  <div class="landing-content">
+    <!-- Monogram graphic -->
+    <div class="monogram-graphic" aria-hidden="true">
+      <div class="monogram-rings">
+        <svg class="monogram-rings-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#b08d57"/>
+              <stop offset="50%" style="stop-color:#d4b896"/>
+              <stop offset="100%" style="stop-color:#8c6d3f"/>
+            </linearGradient>
+          </defs>
+          <circle cx="100" cy="100" r="92" fill="none" stroke="url(#goldGrad)" stroke-width="0.5" opacity="0.5"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="url(#goldGrad)" stroke-width="0.3" opacity="0.3"/>
+          <!-- Cardinal dots -->
+          <circle cx="100" cy="8"   r="2"   fill="#b08d57" opacity="0.55"/>
+          <circle cx="192" cy="100" r="2"   fill="#b08d57" opacity="0.55"/>
+          <circle cx="100" cy="192" r="2"   fill="#b08d57" opacity="0.55"/>
+          <circle cx="8"   cy="100" r="2"   fill="#b08d57" opacity="0.55"/>
+          <!-- Intercardinal dots -->
+          <circle cx="165" cy="35"  r="1.5" fill="#b08d57" opacity="0.35"/>
+          <circle cx="165" cy="165" r="1.5" fill="#b08d57" opacity="0.35"/>
+          <circle cx="35"  cy="165" r="1.5" fill="#b08d57" opacity="0.35"/>
+          <circle cx="35"  cy="35"  r="1.5" fill="#b08d57" opacity="0.35"/>
+          <!-- Cardinal tick marks -->
+          <line x1="100" y1="14"  x2="100" y2="28"  stroke="#b08d57" stroke-width="0.5" opacity="0.3"/>
+          <line x1="186" y1="100" x2="172" y2="100" stroke="#b08d57" stroke-width="0.5" opacity="0.3"/>
+          <line x1="100" y1="186" x2="100" y2="172" stroke="#b08d57" stroke-width="0.5" opacity="0.3"/>
+          <line x1="14"  y1="100" x2="28"  y2="100" stroke="#b08d57" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="monogram-letters">
+        <span class="monogram-n">N</span>
+        <span class="monogram-amp">&amp;</span>
+        <span class="monogram-n">N</span>
+      </div>
+    </div>
+
+    <p class="landing-eyebrow">Wedding Invitation</p>
+
+    <h1 class="landing-names">
+      <span class="landing-name">{{ config.groomName }}</span>
+      <span class="landing-amp">&amp;</span>
+      <span class="landing-name">{{ config.brideName }}</span>
+    </h1>
+
+    <time class="landing-date">{{ config.weddingDateDisplay }}</time>
+
+    <div class="landing-divider" aria-hidden="true">
+      <span class="landing-divider__line"></span>
+      <span class="landing-divider__gem">◆</span>
+      <span class="landing-divider__line"></span>
+    </div>
+
+    <div class="landing-cta">
+      <span class="landing-cta__label">Open Invitation</span>
+      <span class="landing-cta__pulse" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>

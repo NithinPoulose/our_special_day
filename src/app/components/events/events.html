@@ -1,0 +1,91 @@
+<section class="events-section" aria-label="Wedding event details">
+  <div class="events-inner">
+    <!-- Families -->
+    <div class="families" appReveal>
+      <div class="family-card">
+        <span class="family-card__label">Groom's Family</span>
+        <p class="family-card__parents">{{ config.groomParents }}</p>
+        <p class="family-card__address">{{ config.groomFamily }}</p>
+      </div>
+      <div class="family-divider" aria-hidden="true">
+        <span class="family-divider__line"></span>
+        <span class="family-divider__gem">◆</span>
+        <span class="family-divider__line"></span>
+      </div>
+      <div class="family-card">
+        <span class="family-card__label">Bride's Family</span>
+        <p class="family-card__parents">{{ config.brideParents }}</p>
+        <p class="family-card__address">{{ config.brideFamily }}</p>
+      </div>
+    </div>
+
+    <p class="section-eyebrow eyebrow" appReveal>Join Us</p>
+    <h2 class="events-title" appReveal>The Celebration</h2>
+
+    <div class="ornament-divider" aria-hidden="true" style="color: var(--gold-dark)" appReveal>
+      <span class="ornament-divider__line"></span>
+      <span class="ornament-divider__diamond">◆</span>
+      <span class="ornament-divider__line"></span>
+    </div>
+
+    <div class="events-grid events-grid--single" appReveal>
+      <article class="event-card" aria-label="Reception details">
+        <span class="event-card__icon" aria-hidden="true">🥂</span>
+        <h3 class="event-card__type">Wedding Reception</h3>
+        <time class="event-card__time">{{ config.eventTime }}</time>
+        <p class="event-card__venue">{{ config.venue }}</p>
+        <address class="event-card__address">{{ config.venueAddress }}</address>
+        <a
+          class="event-card__map"
+          href="https://maps.app.goo.gl/bq8tZPETAC8v5jHc6"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View venue on Google Maps (opens in new tab)"
+        >
+          View on Maps ↗
+        </a>
+      </article>
+    </div>
+
+    <div class="cal-row">
+      <app-add-to-calendar />
+      <a
+        href="/files/Nithin Neeraja Wedding.pdf"
+        download="Nithin-Neeraja-Wedding-Invitation.pdf"
+        class="download-invite-btn"
+        aria-label="Download wedding invitation as PDF"
+      >
+        <svg class="download-invite-btn__icon" viewBox="0 0 20 20" aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 3v9M7 9l3 3 3-3"/>
+          <path d="M4 15h12"/>
+        </svg>
+        Download Invitation
+      </a>
+    </div>
+
+    <!-- Map thumbnail -->
+    <a
+      class="map-thumbnail"
+      href="https://maps.app.goo.gl/bq8tZPETAC8v5jHc6"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open venue location in Google Maps"
+      appReveal
+    >
+      <iframe
+        class="map-thumbnail__embed"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.5!2d76.3!3d9.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOS41NQ!5e0!3m2!1sen!2sin!4v1691769600000"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Wedding venue location"
+        tabindex="-1"
+        aria-hidden="true"
+      ></iframe>
+      <div class="map-thumbnail__overlay">
+        <span class="map-thumbnail__cta">Open in Google Maps ↗</span>
+      </div>
+    </a>
+  </div>
+</section>

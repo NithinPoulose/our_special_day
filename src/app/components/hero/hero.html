@@ -1,0 +1,118 @@
+<section class="hero" aria-label="Wedding invitation">
+  <!-- Animated bokeh lights -->
+  <div class="bokeh-layer" aria-hidden="true">
+    @for (b of bokeh; track b.id) {
+      <span
+        class="bokeh"
+        [style.width.px]="b.size"
+        [style.height.px]="b.size"
+        [style.left.%]="b.left"
+        [style.top.%]="b.top"
+        [style.animation-delay.s]="b.delay"
+        [style.animation-duration.s]="b.duration"
+        [style.--start-op]="b.opacity"
+        [style.--dx]="b.dx"
+      ></span>
+    }
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-crest" aria-hidden="true">
+      <svg viewBox="0 0 440 148" class="hero-crest__svg" xmlns="http://www.w3.org/2000/svg"
+           fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+
+        <!-- Main branches -->
+        <path fill="none" stroke-width="1.1" d="M220,138 C185,110 135,70 42,22"/>
+        <path fill="none" stroke-width="1.1" d="M220,138 C255,110 305,70 398,22"/>
+
+        <!-- Left branch leaf pairs -->
+        <g transform="translate(197,120)" stroke="none">
+          <path d="M0,0 C-5,-5 -4,-13 0,-18 C4,-13 5,-5 0,0" transform="rotate(-30)" opacity="0.56"/>
+          <path d="M0,0 C-5,-5 -4,-13 0,-18 C4,-13 5,-5 0,0" transform="rotate(22)"  opacity="0.40"/>
+        </g>
+        <g transform="translate(172,102)" stroke="none">
+          <path d="M0,0 C-5,-5 -4,-13 0,-18 C4,-13 5,-5 0,0" transform="rotate(-35)" opacity="0.52"/>
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(20)"  opacity="0.37"/>
+        </g>
+        <g transform="translate(143,82)" stroke="none">
+          <path d="M0,0 C-5,-5 -4,-13 0,-18 C4,-13 5,-5 0,0" transform="rotate(-33)" opacity="0.50"/>
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(22)"  opacity="0.36"/>
+        </g>
+        <g transform="translate(111,60)" stroke="none">
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(-38)" opacity="0.48"/>
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(18)"  opacity="0.34"/>
+        </g>
+        <g transform="translate(74,36)" stroke="none">
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(-36)" opacity="0.44"/>
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(20)"  opacity="0.32"/>
+        </g>
+
+        <!-- Right branch leaf pairs (mirrored) -->
+        <g transform="translate(243,120)" stroke="none">
+          <path d="M0,0 C-5,-5 -4,-13 0,-18 C4,-13 5,-5 0,0" transform="rotate(30)"  opacity="0.56"/>
+          <path d="M0,0 C-5,-5 -4,-13 0,-18 C4,-13 5,-5 0,0" transform="rotate(-22)" opacity="0.40"/>
+        </g>
+        <g transform="translate(268,102)" stroke="none">
+          <path d="M0,0 C-5,-5 -4,-13 0,-18 C4,-13 5,-5 0,0" transform="rotate(35)"  opacity="0.52"/>
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(-20)" opacity="0.37"/>
+        </g>
+        <g transform="translate(297,82)" stroke="none">
+          <path d="M0,0 C-5,-5 -4,-13 0,-18 C4,-13 5,-5 0,0" transform="rotate(33)"  opacity="0.50"/>
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(-22)" opacity="0.36"/>
+        </g>
+        <g transform="translate(329,60)" stroke="none">
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(38)"  opacity="0.48"/>
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(-18)" opacity="0.34"/>
+        </g>
+        <g transform="translate(366,36)" stroke="none">
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(36)"  opacity="0.44"/>
+          <path d="M0,0 C-4,-4 -3,-11 0,-15 C3,-11 4,-4 0,0" transform="rotate(-20)" opacity="0.32"/>
+        </g>
+
+        <!-- Tip blooms -->
+        <circle cx="42"  cy="22" r="4"   stroke="none" opacity="0.50"/>
+        <circle cx="42"  cy="22" r="8.5" fill="none" stroke-width="0.7" opacity="0.22"/>
+        <circle cx="398" cy="22" r="4"   stroke="none" opacity="0.50"/>
+        <circle cx="398" cy="22" r="8.5" fill="none" stroke-width="0.7" opacity="0.22"/>
+
+        <!-- Mid accent dots -->
+        <circle cx="74"  cy="36" r="2.5" stroke="none" opacity="0.38"/>
+        <circle cx="366" cy="36" r="2.5" stroke="none" opacity="0.38"/>
+        <circle cx="143" cy="82" r="2"   stroke="none" opacity="0.28"/>
+        <circle cx="297" cy="82" r="2"   stroke="none" opacity="0.28"/>
+
+        <!-- Center ornament -->
+        <circle cx="220" cy="138" r="4.5" stroke="none" opacity="0.45"/>
+        <circle cx="220" cy="138" r="9"   fill="none" stroke-width="0.8" opacity="0.22"/>
+      </svg>
+    </div>
+
+    <p class="eyebrow section-eyebrow">Wedding Reception</p>
+
+    <h1 class="names" aria-label="{{ config.groomName }} and {{ config.brideName }}">
+      <span class="name">{{ config.groomName }}</span>
+      <span class="amp" aria-hidden="true">Weds</span>
+      <span class="name">{{ config.brideName }}</span>
+    </h1>
+
+    <p class="subheading">
+      Cordially invite your esteemed presence and wishes on the wedding reception
+    </p>
+
+    <div class="ornament-divider divider" aria-hidden="true" style="color: var(--gold)">
+      <span class="ornament-divider__line"></span>
+      <span class="ornament-divider__diamond">◆</span>
+      <span class="ornament-divider__line"></span>
+    </div>
+
+    <time class="date" [attr.datetime]="config.weddingDate.toISOString()">
+      {{ config.weddingDateDisplay }}
+    </time>
+    <p class="location">{{ config.venue }}, {{ config.venueAddress }}</p>
+  </div>
+
+  <a class="scroll-cue" href="#countdown" aria-label="Scroll to see event details">
+    <span class="scroll-cue__label">Scroll</span>
+    <span class="scroll-cue__line" aria-hidden="true"></span>
+  </a>
+</section>

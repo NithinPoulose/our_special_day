@@ -1,0 +1,32 @@
+<section id="countdown" class="countdown-section" aria-label="Time remaining until the wedding">
+  <div class="countdown-inner">
+    @if (!isPast()) {
+      <h2 class="countdown-title" appReveal>The Wedding Begins In</h2>
+
+      <div
+        class="grid"
+        appReveal
+        aria-live="polite"
+        aria-atomic="true"
+        [attr.aria-label]="timeLeft().days + ' days ' + timeLeft().hours + ' hours ' + timeLeft().minutes + ' minutes ' + timeLeft().seconds + ' seconds'"
+      >
+        @for (unit of units(); track unit.label) {
+          <div class="card" aria-hidden="true">
+            <span class="card__value">{{ unit.value }}</span>
+            <span class="card__label">{{ unit.label }}</span>
+          </div>
+        }
+      </div>
+
+      <p class="countdown-date" appReveal>{{ config.weddingDateDisplay }}</p>
+    } @else {
+      <div class="celebration" appReveal>
+        <p class="section-eyebrow">Today Is The Day</p>
+        <h2 class="celebration__title">
+          Congratulations,<br />
+          {{ config.groomName }} &amp; {{ config.brideName }}!
+        </h2>
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,72 @@
+<section class="story-section" aria-label="Our love story">
+  <div class="story-inner">
+    <p class="section-eyebrow eyebrow" appReveal>How It All Began</p>
+    <h2 class="story-title" appReveal>Our Story</h2>
+
+    <div class="ornament-divider" aria-hidden="true" style="color: var(--gold-dark)" appReveal>
+      <span class="ornament-divider__line"></span>
+      <span class="ornament-divider__diamond">◆</span>
+      <span class="ornament-divider__line"></span>
+    </div>
+
+    <section class="childhood" aria-label="Childhood memories" appReveal>
+      <p class="childhood__eyebrow">Then &amp; Now</p>
+      <div class="childhood__grid">
+        <article class="memory-card" aria-label="Nithin childhood memory">
+          <div class="memory-photo memory-photo--nithin">
+            @if (!nithinPhotoMissing()) {
+              <img
+                class="memory-photo__img"
+                [src]="nithinPhotoPath"
+                alt="Nithin childhood photo"
+                loading="lazy"
+                decoding="async"
+                (error)="onPhotoError('nithin')"
+              />
+            }
+            @if (nithinPhotoMissing()) {
+              <span class="memory-photo__fallback" aria-hidden="true">N</span>
+            }
+          </div>
+          <p class="memory-card__name">Nithin</p>
+          <p class="memory-card__meta">Class 5A • St. Joseph's High School</p>
+        </article>
+
+        <div class="memory-connector" aria-hidden="true">◆</div>
+
+        <article class="memory-card" aria-label="Neeraja childhood memory">
+          <div class="memory-photo memory-photo--neeraja">
+            @if (!neerajaPhotoMissing()) {
+              <img
+                class="memory-photo__img"
+                [src]="neerajaPhotoPath"
+                alt="Neeraja childhood photo"
+                loading="lazy"
+                decoding="async"
+                (error)="onPhotoError('neeraja')"
+              />
+            }
+            @if (neerajaPhotoMissing()) {
+              <span class="memory-photo__fallback" aria-hidden="true">N</span>
+            }
+          </div>
+          <p class="memory-card__name">Neeraja</p>
+          <p class="memory-card__meta">Class 5A • St. Joseph's High School</p>
+        </article>
+      </div>
+    </section>
+
+    <ol class="timeline" role="list">
+      @for (m of milestones; track m.year) {
+        <li class="milestone" appReveal>
+          <span class="milestone__year" aria-hidden="true">{{ m.year }}</span>
+          <span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__content">
+            <h3 class="milestone__title">{{ m.title }}</h3>
+            <p class="milestone__desc">{{ m.description }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
