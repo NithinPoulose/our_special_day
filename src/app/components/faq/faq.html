@@ -1,0 +1,38 @@
+<section class="faq-section" aria-label="Frequently asked questions">
+  <div class="faq-inner">
+
+    <p class="section-eyebrow eyebrow" appReveal>Good to Know</p>
+    <h2 class="faq-title" appReveal>Questions & Answers</h2>
+
+    <div class="ornament-divider" aria-hidden="true" style="color: var(--gold-dark)" appReveal>
+      <span class="ornament-divider__line"></span>
+      <span class="ornament-divider__diamond">◆</span>
+      <span class="ornament-divider__line"></span>
+    </div>
+
+    <dl class="faq-list" appReveal>
+      @for (item of items; track item.question; let i = $index) {
+        <div class="faq-item" [class.faq-item--open]="openIndex() === i">
+          <dt>
+            <button
+              class="faq-question"
+              type="button"
+              [attr.aria-expanded]="openIndex() === i"
+              [attr.aria-controls]="'faq-answer-' + i"
+              (click)="toggle(i)"
+            >
+              <span class="faq-question__text">{{ item.question }}</span>
+              <span class="faq-question__icon" aria-hidden="true">
+                {{ openIndex() === i ? '−' : '+' }}
+              </span>
+            </button>
+          </dt>
+          <dd class="faq-answer" [id]="'faq-answer-' + i">
+            <p class="faq-answer__text">{{ item.answer }}</p>
+          </dd>
+        </div>
+      }
+    </dl>
+
+  </div>
+</section>

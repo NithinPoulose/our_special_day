@@ -10,12 +10,20 @@ import { AudioPlayerComponent } from './components/audio-player/audio-player';
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LandingComponent, HeroComponent, CountdownComponent, StoryComponent, EventsComponent, FooterComponent, AudioPlayerComponent],
+  imports: [
+    LandingComponent,
+    HeroComponent,
+    CountdownComponent,
+    StoryComponent,
+    EventsComponent,
+    FooterComponent,
+    AudioPlayerComponent
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly opened  = signal(false);
+  protected readonly opened = signal(false);
   protected readonly leaving = signal(false);
 
   protected enter(): void {

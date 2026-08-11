@@ -1,0 +1,111 @@
+:host { display: block; }
+
+.faq-section {
+  background: linear-gradient(180deg, var(--ivory-dark) 0%, var(--champagne) 100%);
+  padding: 5rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border-light);
+}
+
+.faq-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  color: var(--gold-dark);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.faq-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--charcoal);
+  line-height: 1.1;
+  padding-bottom: 0.08em;
+}
+
+.ornament-divider { margin: 2rem auto 3rem; }
+
+.faq-list {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border-light);
+
+  &:first-child { border-top: 1px solid var(--border-light); }
+
+  &--open .faq-question {
+    color: var(--gold-dark);
+  }
+
+  &--open .faq-question__icon {
+    color: var(--gold);
+  }
+
+  &--open .faq-answer {
+    max-height: 200px;
+    opacity: 1;
+  }
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--charcoal);
+  text-align: left;
+  transition: color 0.25s ease;
+
+  &:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  &:hover { color: var(--gold-dark); }
+
+  &__text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  &__icon {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    flex-shrink: 0;
+    transition: color 0.25s ease, transform 0.3s ease;
+    line-height: 1;
+    width: 1.4rem;
+    text-align: center;
+  }
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.35s ease;
+
+  &__text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    padding-bottom: 1.25rem;
+  }
+}
