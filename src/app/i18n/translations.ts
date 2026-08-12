@@ -104,7 +104,7 @@ export interface Translations {
 const en: Translations = {
   landing: {
     eyebrow: 'Wedding Invitation',
-    cta: 'Open Invitation',
+    cta: 'Click to Open',
   },
   hero: {
     eyebrow: 'Wedding Reception',
