@@ -42,10 +42,31 @@
   margin: 0 auto 1.35rem;
   color: rgba(176, 141, 87, 0.55);
   animation: fadeUp 1.4s ease 0.2s both;
+  text-align: center;
 
-  &__svg {
-    width: clamp(240px, 52vw, 340px);
+  // isolate so the screen overlay only blends with the illustration, not the page
+  &__artwork {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+
+    // screen blend: maps black → #b08d57, white → white
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #b08d57;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+  }
+
+  &__illustration {
+    width: clamp(120px, 26vw, 170px);
     height: auto;
+    display: block;
+    margin: 0 auto;
+    mix-blend-mode: multiply;
   }
 }
 
@@ -59,7 +80,7 @@
 .names {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
-  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-size: clamp(3.5rem, 12vw, 5.5rem);
   line-height: 1.2;
   margin: 0 0 1.5rem;
   display: flex;

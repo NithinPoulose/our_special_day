@@ -57,7 +57,7 @@
     </section>
 
     <ol class="timeline" role="list">
-      @for (m of milestones; track m.year) {
+      @for (m of milestones; track m.title) {
         <li class="milestone" appReveal>
           <span class="milestone__year" aria-hidden="true">{{ m.year }}</span>
           <span class="milestone__dot" aria-hidden="true"></span>

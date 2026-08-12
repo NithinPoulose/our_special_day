@@ -44,7 +44,7 @@ export class StoryComponent {
       year: '2020',
       title: 'Love Begins',
       description:
-        'Somewhere between late-night texts and endless calls, friendship quietly turned into something neither of us could ignore.',
+        'Somewhere amid the meetings, chats, and endless calls, friendship quietly turned into something neither of us could ignore.',
     },
     {
       year: '2021',

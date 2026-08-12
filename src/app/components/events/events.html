@@ -30,9 +30,22 @@
 
     <div class="events-grid events-grid--single" appReveal>
       <article class="event-card" aria-label="Reception details">
-        <span class="event-card__icon" aria-hidden="true">💍</span>
+        <span class="event-card__corner event-card__corner--tl" aria-hidden="true"></span>
+        <span class="event-card__corner event-card__corner--tr" aria-hidden="true"></span>
+        <span class="event-card__corner event-card__corner--bl" aria-hidden="true"></span>
+        <span class="event-card__corner event-card__corner--br" aria-hidden="true"></span>
+
+        <span class="event-card__icon" aria-hidden="true"></span>
         <h3 class="event-card__type">Wedding Reception</h3>
-        <time class="event-card__time">{{ config.eventTime }}</time>
+        <time class="event-card__time" datetime="2026-08-27T18:00">{{ config.eventTime }}</time>
+        <p class="event-card__date">{{ config.weddingDateDisplay }}</p>
+
+        <div class="event-card__divider" aria-hidden="true">
+          <span class="event-card__divider-line"></span>
+          <span class="event-card__divider-gem">◆</span>
+          <span class="event-card__divider-line"></span>
+        </div>
+
         <p class="event-card__venue">{{ config.venue }}</p>
         <address class="event-card__address">{{ config.venueAddress }}</address>
         <a
@@ -50,7 +63,7 @@
     <div class="cal-row">
       <app-add-to-calendar />
       <a
-        href="/files/Nithin Neeraja Wedding.pdf"
+        href="/files/Nithin%20Neeraja%20Wedding.pdf"
         download="Nithin-Neeraja-Wedding-Invitation.pdf"
         class="download-invite-btn"
         aria-label="Download wedding invitation as PDF"
@@ -76,7 +89,7 @@
     >
       <iframe
         class="map-thumbnail__embed"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.5!2d76.3!3d9.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOS41NQ!5e0!3m2!1sen!2sin!4v1691769600000"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.5!2d76.3588!3d10.1082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0807a8a7b03c21%3A0x1234abcd!2sSt.%20Pius%20Xth%20Auditorium%2C%20Choondy%2C%20Aluva!5e0!3m2!1sen!2sin!4v1691769600000"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         title="Wedding venue location"

@@ -12,8 +12,8 @@
   padding: 3rem 2rem;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 55% 45% at 50% 40%, rgba(176, 141, 87, 0.18) 0%, transparent 65%),
-    linear-gradient(170deg, #1a1208 0%, #231a0d 40%, #2c2418 70%, #1e1510 100%);
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(176, 141, 87, 0.07) 0%, transparent 70%),
+    linear-gradient(170deg, #faf7f2 0%, #f0ebe3 40%, #ece4d9 70%, #f5ede5 100%);
 }
 
 // Corner ornaments
@@ -44,28 +44,28 @@
     top: 2rem; left: 2rem;
     border-top: 1px solid var(--gold);
     border-left: 1px solid var(--gold);
-    opacity: 0.55;
+    opacity: 0.4;
     &::after { bottom: -2px; right: -2px; }
   }
   &--tr {
     top: 2rem; right: 2rem;
     border-top: 1px solid var(--gold);
     border-right: 1px solid var(--gold);
-    opacity: 0.55;
+    opacity: 0.4;
     &::after { bottom: -2px; left: -2px; }
   }
   &--bl {
     bottom: 2rem; left: 2rem;
     border-bottom: 1px solid var(--gold);
     border-left: 1px solid var(--gold);
-    opacity: 0.55;
+    opacity: 0.4;
     &::after { top: -2px; right: -2px; }
   }
   &--br {
     bottom: 2rem; right: 2rem;
     border-bottom: 1px solid var(--gold);
     border-right: 1px solid var(--gold);
-    opacity: 0.55;
+    opacity: 0.4;
     &::after { top: -2px; left: -2px; }
   }
 }
@@ -80,7 +80,7 @@
 .ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(176, 141, 87, 0.22);
+  border: 1px solid rgba(176, 141, 87, 0.12);
 
   &--1 {
     width: 320px;
@@ -88,7 +88,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: ringPulse 4s ease-in-out infinite;
+    animation: ring1Anim 20s linear infinite;
   }
 
   &--2 {
@@ -98,7 +98,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     animation: ringPulse 4s ease-in-out 0.8s infinite;
-    border-color: rgba(176, 141, 87, 0.15);
+    border-color: rgba(176, 141, 87, 0.08);
+    border-style: dotted;
   }
 
   &--3 {
@@ -107,8 +108,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: ringPulse 4s ease-in-out 1.6s infinite;
-    border-color: rgba(176, 141, 87, 0.09);
+    animation: ring3Anim 30s linear infinite;
+    border-color: rgba(176, 141, 87, 0.05);
   }
 
   &--4 {
@@ -118,7 +119,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     animation: ringPulse 6s ease-in-out 2.4s infinite;
-    border-color: rgba(176, 141, 87, 0.05);
+    border-color: rgba(176, 141, 87, 0.03);
   }
 }
 
@@ -134,7 +135,7 @@
   position: absolute;
   width: 8px;
   height: 12px;
-  background: rgba(212, 184, 150, 0.35);
+  background: rgba(176, 141, 87, 0.2);
   border-radius: 50% 50% 50% 0;
   animation: petalFall linear infinite;
 
@@ -181,28 +182,28 @@
 .monogram-letters {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 0;
+  gap: 4px;
   line-height: 1;
 }
 
 .monogram-n {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.4rem;
+  font-family: 'Lavishly Yours', cursive;
+  font-size: 5.6rem;
   font-weight: 400;
-  background: linear-gradient(135deg, #c8a265, #d4b896, #f0dfc0, #d4b896);
+  background: linear-gradient(135deg, #8c6d3f, #b08d57, #d4b896, #b08d57);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  line-height: 1.05;
+  line-height: 1.1;
   padding-bottom: 0.05em;
 }
 
 .monogram-amp {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1rem;
+  font-family: 'Lavishly Yours', cursive;
+  font-style: normal;
+  font-size: 2.2rem;
   color: var(--gold);
   opacity: 0.65;
   line-height: 1.2;
@@ -219,9 +220,9 @@
   font-size: 0.65rem;
   letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   margin-bottom: 2.5rem;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 .landing-names {
@@ -229,7 +230,7 @@
   font-weight: 400;
   font-size: clamp(3rem, 10vw, 6.5rem);
   line-height: 1.2;
-  color: var(--ivory);
+  color: var(--charcoal);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -240,7 +241,7 @@
 .landing-name {
   display: block;
   padding-bottom: 0.12em;
-  background: linear-gradient(135deg, var(--ivory) 0%, var(--gold-light) 40%, var(--gold) 60%, var(--ivory) 100%);
+  background: linear-gradient(135deg, var(--charcoal) 0%, var(--gold-dark) 40%, var(--gold) 60%, var(--charcoal) 100%);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
@@ -263,7 +264,7 @@
   font-weight: 400;
   font-size: 0.75rem;
   letter-spacing: 0.35em;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   margin-bottom: 1.5rem;
 }
 
@@ -277,13 +278,13 @@
   &__line {
     width: 40px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212, 184, 150, 0.55), transparent);
+    background: linear-gradient(90deg, transparent, rgba(176, 141, 87, 0.5), transparent);
   }
 
   &__gem {
     font-size: 0.45rem;
-    color: var(--gold-light);
-    opacity: 0.65;
+    color: var(--gold);
+    opacity: 0.6;
   }
 }
 
@@ -300,7 +301,7 @@
     font-weight: 400;
     font-size: 1.1rem;
     letter-spacing: 0.2em;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     position: relative;
 
     &::after {
@@ -319,12 +320,24 @@
     display: block;
     width: 1px;
     height: 26px;
-    background: linear-gradient(to bottom, var(--gold-light), transparent);
+    background: linear-gradient(to bottom, var(--gold), transparent);
     animation: pulseGlow 2.8s ease-in-out 3.5s infinite;
   }
 }
 
 // Animations
+@keyframes ring1Anim {
+  0%   { opacity: 0.35; transform: translate(-50%, -50%) scale(1)    rotate(0deg); }
+  50%  { opacity: 0.7;  transform: translate(-50%, -50%) scale(1.04) rotate(180deg); }
+  100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1)    rotate(360deg); }
+}
+
+@keyframes ring3Anim {
+  0%   { opacity: 0.3;  transform: translate(-50%, -50%) scale(1)    rotate(360deg); }
+  50%  { opacity: 0.55; transform: translate(-50%, -50%) scale(1.03) rotate(180deg); }
+  100% { opacity: 0.3;  transform: translate(-50%, -50%) scale(1)    rotate(0deg); }
+}
+
 @keyframes ringPulse {
   0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
   50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.03); }
@@ -352,7 +365,38 @@
   from { opacity: 0; }
   to   { opacity: 0.4; }
 }
+// Twinkling star sparkles
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
 
+.sparkle {
+  position: absolute;
+  color: var(--gold);
+  animation: twinkle ease-in-out infinite;
+}
+
+.sparkle--1  { top: 18%;    left: 10%;   font-size: 0.6rem;  animation-duration: 4s;   animation-delay:  0s; }
+.sparkle--2  { top: 7%;     left: 38%;   font-size: 0.45rem; animation-duration: 5s;   animation-delay: 1.5s; }
+.sparkle--3  { top: 11%;    right: 14%;  font-size: 0.55rem; animation-duration: 4.5s; animation-delay: 3s; }
+.sparkle--4  { top: 33%;    right: 6%;   font-size: 0.4rem;  animation-duration: 6s;   animation-delay: 0.8s; }
+.sparkle--5  { top: 65%;    right: 8%;   font-size: 0.5rem;  animation-duration: 5s;   animation-delay: 2s; }
+.sparkle--6  { bottom: 22%; right: 18%;  font-size: 0.55rem; animation-duration: 4s;   animation-delay: 4s; }
+.sparkle--7  { bottom: 18%; left: 14%;   font-size: 0.4rem;  animation-duration: 5.5s; animation-delay: 0.5s; }
+.sparkle--8  { top: 75%;    left: 7%;    font-size: 0.5rem;  animation-duration: 4.5s; animation-delay: 2.5s; }
+.sparkle--9  { top: 44%;    left: 3.5%;  font-size: 0.45rem; animation-duration: 6s;   animation-delay: 1s; }
+.sparkle--10 { bottom: 35%; right: 4%;   font-size: 0.38rem; animation-duration: 5s;   animation-delay: 3.5s; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0;    transform: scale(0.4) rotate(0deg); }
+  20%       { opacity: 0; }
+  50%       { opacity: 0.65; transform: scale(1)   rotate(72deg); }
+  80%       { opacity: 0; }
+}
 @keyframes lineDrawIn {
   from { width: 0;    opacity: 0; }
   to   { width: 70px; opacity: 1; }

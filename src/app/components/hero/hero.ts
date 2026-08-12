@@ -1,9 +1,11 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { WeddingConfigService } from '../../services/wedding-config.service';
 
 @Component({
   selector: 'app-hero',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgOptimizedImage],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })

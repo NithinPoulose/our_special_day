@@ -233,8 +233,10 @@
   .milestone,
   .milestone:nth-child(even) {
     grid-template-columns: 20px 1fr;
-    grid-template-areas: 'dot content';
-    .milestone__year    { display: none; }
+    grid-template-areas:
+      'dot year'
+      '.   content';
+    .milestone__year    { display: block; text-align: left; }
     .milestone__content { text-align: left; }
   }
 }
