@@ -12,7 +12,8 @@ export class I18nService {
   private initLang(): Lang {
     const params = new URLSearchParams(this.doc.defaultView?.location.search ?? '');
     const raw = params.get('lang');
-    const lang: Lang = raw === 'ml' ? 'ml' : 'en';
+    const hasLangSw = params.get('langSw') === 'true';
+    const lang: Lang = hasLangSw && raw === 'ml' ? 'ml' : 'en';
     this.doc.documentElement.lang = lang;
     return lang;
   }

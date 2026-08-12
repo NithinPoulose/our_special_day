@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer';
 import { AudioPlayerComponent } from './components/audio-player/audio-player';
 import { LangSwitcherComponent } from './components/lang-switcher/lang-switcher';
 import { I18nService } from './services/i18n.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,11 @@ export class App {
   protected readonly i18n = inject(I18nService);
   protected readonly opened = signal(false);
   protected readonly leaving = signal(false);
+  private readonly router = inject(Router);
+
+  protected readonly showLangSwitcher = signal(
+    new URLSearchParams(window.location.search).get('langSw') === 'true',
+  );
 
   protected enter(): void {
     if (this.leaving()) return;

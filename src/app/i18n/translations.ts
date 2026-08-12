@@ -132,7 +132,7 @@ const en: Translations = {
       {
         year: '2013',
         title: 'Farewell',
-        description: 'With SSLC behind us, our school days came to an end. We went our separate ways for higher education, and in time our paths took shape: she toward law, and I toward engineering.',
+        description: 'With SSLC behind us, our school days came to an end. We went our separate ways for higher education, and in time our paths took shape: she towards law, and I towards engineering.',
       },
       {
         year: '2017',
@@ -152,12 +152,12 @@ const en: Translations = {
       {
         year: '2026',
         title: 'Official Registration',
-        description: 'August 24th — before the celebration, the moment we became officially, legally, forever each other\'s.',
+        description: 'August 24th — before the celebration, the moment we will become officially, legally, forever each other\'s.',
       },
       {
         year: '2026',
         title: 'Wedding Celebration',
-        description: 'From classmates to soulmates — on August 27th, surrounded by family and love, we celebrate it with the world.',
+        description: 'From classmates to soulmates — on August 27th, surrounded by family and love, we are going to celebrate it with the world.',
       },
     ],
   },
