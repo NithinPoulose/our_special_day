@@ -147,7 +147,7 @@ const en: Translations = {
       {
         year: '2021',
         title: 'First Date',
-        description: 'Finally together, face to face, hearts racing — the day we stopped pretending it was "just friendship."',
+        description: 'Finally, we met on our own, face to face — the day we both knew this had become more than just friendship.',
       },
       {
         year: '2026',
