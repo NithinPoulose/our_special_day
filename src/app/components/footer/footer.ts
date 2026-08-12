@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { WeddingConfigService } from '../../services/wedding-config.service';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,17 +8,17 @@ import { WeddingConfigService } from '../../services/wedding-config.service';
   template: `
     <footer class="site-footer">
       <div class="monogram" aria-hidden="true">
-        {{ config.groomName[0] }}
+        {{ i18n.t().groomName[0] }}
         <span class="monogram__amp">&amp;</span>
-        {{ config.brideName[0] }}
+        {{ i18n.t().brideName[0] }}
       </div>
-      <time class="footer-date">{{ config.weddingDateDisplay }}</time>
-      <p class="footer-tagline">Made with love, for our special day</p>
+      <time class="footer-date">{{ i18n.t().weddingDateDisplay }}</time>
+      <p class="footer-tagline">{{ i18n.t().footer.tagline }}</p>
 
       <div class="footer-gem" aria-hidden="true">✦ ✦ ✦</div>
 
       <div class="dev-section">
-        <p class="dev-section__eyebrow">Website crafted by</p>
+        <p class="dev-section__eyebrow">{{ i18n.t().footer.craftedBy }}</p>
         <a href="mailto:nithinpoulosek@gmail.com" class="dev-section__name">Nithin Poulose</a>
         <a href="mailto:nithinpoulosek@gmail.com" class="dev-section__email">nithinpoulosek@gmail.com</a>
       </div>
@@ -139,4 +140,5 @@ import { WeddingConfigService } from '../../services/wedding-config.service';
 })
 export class FooterComponent {
   protected readonly config = inject(WeddingConfigService);
+  protected readonly i18n   = inject(I18nService);
 }

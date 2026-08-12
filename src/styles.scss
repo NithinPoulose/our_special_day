@@ -22,6 +22,13 @@
 
 html { scroll-behavior: smooth; }
 
+:lang(ml) body   { font-family: 'Noto Serif Malayalam', serif; }
+:lang(ml) h1,
+:lang(ml) h2,
+:lang(ml) h3     { font-family: 'Noto Serif Malayalam', serif; }
+/* Malayalam conjuncts break with any positive letter-spacing */
+:lang(ml) *      { letter-spacing: 0 !important; }
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;

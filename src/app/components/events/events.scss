@@ -387,6 +387,14 @@
     line-height: 1.4;
   }
 
+  &__sibling {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--gold-dark);
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+  }
+
   &__address {
     font-size: 0.8rem;
     font-weight: 300;

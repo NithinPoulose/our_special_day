@@ -1,4 +1,4 @@
-<section class="hero" aria-label="Wedding invitation">
+<section class="hero" [attr.aria-label]="i18n.t().a11y.heroSection">
   <!-- Animated bokeh lights -->
   <div class="bokeh-layer" aria-hidden="true">
     @for (b of bokeh; track b.id) {
@@ -27,16 +27,16 @@
     </div>
 
 
-    <p class="eyebrow section-eyebrow">Wedding Reception</p>
+    <p class="eyebrow section-eyebrow">{{ i18n.t().hero.eyebrow }}</p>
 
-    <h1 class="names" aria-label="{{ config.groomName }} and {{ config.brideName }}">
-      <span class="name">{{ config.groomName }}</span>
-      <span class="amp" aria-hidden="true">Weds</span>
-      <span class="name">{{ config.brideName }}</span>
+    <h1 class="names" [attr.aria-label]="i18n.t().groomName + ' ' + i18n.t().hero.weds + ' ' + i18n.t().brideName">
+      <span class="name">{{ i18n.t().groomName }}</span>
+      <span class="amp" aria-hidden="true">{{ i18n.t().hero.weds }}</span>
+      <span class="name">{{ i18n.t().brideName }}</span>
     </h1>
 
     <p class="subheading">
-      You are cordially invited to celebrate our wedding reception
+      {{ i18n.t().hero.subheading }}
     </p>
 
     <div class="ornament-divider divider" aria-hidden="true" style="color: var(--gold)">
@@ -46,13 +46,13 @@
     </div>
 
     <time class="date" [attr.datetime]="config.weddingDate.toISOString()">
-      {{ config.weddingDateDisplay }}
+      {{ i18n.t().weddingDateDisplay }}
     </time>
-    <p class="location">{{ config.venue }}, {{ config.venueAddress }}</p>
+    <p class="location">{{ i18n.t().venue }}, {{ i18n.t().venueAddress }}</p>
   </div>
 
-  <a class="scroll-cue" href="#countdown" aria-label="Scroll to see event details">
-    <span class="scroll-cue__label">Scroll</span>
+  <a class="scroll-cue" href="#countdown" [attr.aria-label]="i18n.t().a11y.scrollToDetails">
+    <span class="scroll-cue__label">{{ i18n.t().hero.scroll }}</span>
     <span class="scroll-cue__line" aria-hidden="true"></span>
   </a>
 </section>

@@ -1,7 +1,7 @@
-<section class="story-section" aria-label="Our love story">
+<section class="story-section" [attr.aria-label]="i18n.t().a11y.storySection">
   <div class="story-inner">
-    <p class="section-eyebrow eyebrow" appReveal>How It All Began</p>
-    <h2 class="story-title" appReveal>Our Story</h2>
+    <p class="section-eyebrow eyebrow" appReveal>{{ i18n.t().story.eyebrow }}</p>
+    <h2 class="story-title" appReveal>{{ i18n.t().story.title }}</h2>
 
     <div class="ornament-divider" aria-hidden="true" style="color: var(--gold-dark)" appReveal>
       <span class="ornament-divider__line"></span>
@@ -9,16 +9,16 @@
       <span class="ornament-divider__line"></span>
     </div>
 
-    <section class="childhood" aria-label="Childhood memories" appReveal>
-      <p class="childhood__eyebrow">Then &amp; Now</p>
+    <section class="childhood" [attr.aria-label]="i18n.t().a11y.childhoodMemories" appReveal>
+      <p class="childhood__eyebrow">{{ i18n.t().story.thenAndNow }}</p>
       <div class="childhood__grid">
-        <article class="memory-card" aria-label="Nithin childhood memory">
+        <article class="memory-card" [attr.aria-label]="i18n.t().a11y.groomChildhoodMemory">
           <div class="memory-photo memory-photo--nithin">
             @if (!nithinPhotoMissing()) {
               <img
                 class="memory-photo__img"
                 [src]="nithinPhotoPath"
-                alt="Nithin childhood photo"
+                [attr.alt]="i18n.t().a11y.groomChildhoodPhoto"
                 loading="lazy"
                 decoding="async"
                 (error)="onPhotoError('nithin')"
@@ -28,19 +28,19 @@
               <span class="memory-photo__fallback" aria-hidden="true">N</span>
             }
           </div>
-          <p class="memory-card__name">Nithin</p>
-          <p class="memory-card__meta">Class 5A • St. Joseph's High School</p>
+          <p class="memory-card__name">{{ i18n.t().groomName }}</p>
+          <p class="memory-card__meta">{{ i18n.t().story.cardMeta }}</p>
         </article>
 
         <div class="memory-connector" aria-hidden="true">◆</div>
 
-        <article class="memory-card" aria-label="Neeraja childhood memory">
+        <article class="memory-card" [attr.aria-label]="i18n.t().a11y.brideChildhoodMemory">
           <div class="memory-photo memory-photo--neeraja">
             @if (!neerajaPhotoMissing()) {
               <img
                 class="memory-photo__img"
                 [src]="neerajaPhotoPath"
-                alt="Neeraja childhood photo"
+                [attr.alt]="i18n.t().a11y.brideChildhoodPhoto"
                 loading="lazy"
                 decoding="async"
                 (error)="onPhotoError('neeraja')"
@@ -50,14 +50,14 @@
               <span class="memory-photo__fallback" aria-hidden="true">N</span>
             }
           </div>
-          <p class="memory-card__name">Neeraja</p>
-          <p class="memory-card__meta">Class 5A • St. Joseph's High School</p>
+          <p class="memory-card__name">{{ i18n.t().brideName }}</p>
+          <p class="memory-card__meta">{{ i18n.t().story.cardMeta }}</p>
         </article>
       </div>
     </section>
 
     <ol class="timeline" role="list">
-      @for (m of milestones; track m.title) {
+      @for (m of milestones(); track m.title) {
         <li class="milestone" appReveal>
           <span class="milestone__year" aria-hidden="true">{{ m.year }}</span>
           <span class="milestone__dot" aria-hidden="true"></span>

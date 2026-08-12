@@ -1,5 +1,5 @@
 @if (!opened()) {
-  <div class="landing-wrapper" [class.leaving]="leaving()" (click)="enter()" role="button" tabindex="0" (keydown.enter)="enter()" aria-label="Open wedding invitation">
+  <div class="landing-wrapper" [class.leaving]="leaving()" (click)="enter()" role="button" tabindex="0" (keydown.enter)="enter()" [attr.aria-label]="i18n.t().a11y.openInvitation">
     <app-landing />
   </div>
 } @else {
@@ -27,3 +27,5 @@
     <app-footer />
   </div>
 }
+
+<app-lang-switcher />

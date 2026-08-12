@@ -1,11 +1,12 @@
-<section class="events-section" aria-label="Wedding event details">
+<section class="events-section" [attr.aria-label]="i18n.t().a11y.eventsSection">
   <div class="events-inner">
     <!-- Families -->
     <div class="families" appReveal>
       <div class="family-card">
-        <span class="family-card__label">Groom's Family</span>
-        <p class="family-card__parents">{{ config.groomParents }}</p>
-        <p class="family-card__address">{{ config.groomFamily }}</p>
+        <span class="family-card__label">{{ i18n.t().events.groomFamily }}</span>
+        <p class="family-card__parents">{{ i18n.t().groomParents }}</p>
+        <p class="family-card__sibling">{{ i18n.t().groomSibling }}</p>
+        <p class="family-card__address">{{ i18n.t().groomFamily }}</p>
       </div>
       <div class="family-divider" aria-hidden="true">
         <span class="family-divider__line"></span>
@@ -13,14 +14,15 @@
         <span class="family-divider__line"></span>
       </div>
       <div class="family-card">
-        <span class="family-card__label">Bride's Family</span>
-        <p class="family-card__parents">{{ config.brideParents }}</p>
-        <p class="family-card__address">{{ config.brideFamily }}</p>
+        <span class="family-card__label">{{ i18n.t().events.brideFamily }}</span>
+        <p class="family-card__parents">{{ i18n.t().brideParents }}</p>
+        <p class="family-card__sibling">{{ i18n.t().brideSibling }}</p>
+        <p class="family-card__address">{{ i18n.t().brideFamily }}</p>
       </div>
     </div>
 
-    <p class="section-eyebrow eyebrow" appReveal>Join Us</p>
-    <h2 class="events-title" appReveal>The Celebration</h2>
+    <p class="section-eyebrow eyebrow" appReveal>{{ i18n.t().events.eyebrow }}</p>
+    <h2 class="events-title" appReveal>{{ i18n.t().events.title }}</h2>
 
     <div class="ornament-divider" aria-hidden="true" style="color: var(--gold-dark)" appReveal>
       <span class="ornament-divider__line"></span>
@@ -36,9 +38,9 @@
         <span class="event-card__corner event-card__corner--br" aria-hidden="true"></span>
 
         <span class="event-card__icon" aria-hidden="true"></span>
-        <h3 class="event-card__type">Wedding Reception</h3>
-        <time class="event-card__time" datetime="2026-08-27T18:00">{{ config.eventTime }}</time>
-        <p class="event-card__date">{{ config.weddingDateDisplay }}</p>
+        <h3 class="event-card__type">{{ i18n.t().events.cardType }}</h3>
+        <time class="event-card__time" datetime="2026-08-27T18:00">{{ i18n.t().eventTime }}</time>
+        <p class="event-card__date">{{ i18n.t().weddingDateDisplay }}</p>
 
         <div class="event-card__divider" aria-hidden="true">
           <span class="event-card__divider-line"></span>
@@ -46,16 +48,16 @@
           <span class="event-card__divider-line"></span>
         </div>
 
-        <p class="event-card__venue">{{ config.venue }}</p>
-        <address class="event-card__address">{{ config.venueAddress }}</address>
+        <p class="event-card__venue">{{ i18n.t().venue }}</p>
+        <address class="event-card__address">{{ i18n.t().venueAddress }}</address>
         <a
           class="event-card__map"
           href="https://maps.app.goo.gl/bq8tZPETAC8v5jHc6"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="View venue on Google Maps (opens in new tab)"
+          [attr.aria-label]="i18n.t().a11y.openVenueInMaps"
         >
-          View on Maps ↗
+          {{ i18n.t().events.viewMaps }}
         </a>
       </article>
     </div>
@@ -66,7 +68,7 @@
         href="/files/Nithin%20Neeraja%20Wedding.pdf"
         download="Nithin-Neeraja-Wedding-Invitation.pdf"
         class="download-invite-btn"
-        aria-label="Download wedding invitation as PDF"
+        [attr.aria-label]="i18n.t().a11y.downloadInvitationPdf"
       >
         <svg class="download-invite-btn__icon" viewBox="0 0 20 20" aria-hidden="true"
              xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
@@ -74,7 +76,7 @@
           <path d="M10 3v9M7 9l3 3 3-3"/>
           <path d="M4 15h12"/>
         </svg>
-        Download Invitation
+        {{ i18n.t().events.downloadInvitation }}
       </a>
     </div>
 
@@ -84,7 +86,7 @@
       href="https://maps.app.goo.gl/bq8tZPETAC8v5jHc6"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Open venue location in Google Maps"
+      [attr.aria-label]="i18n.t().a11y.openVenueInMaps"
       appReveal
     >
       <iframe
@@ -92,12 +94,12 @@
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.5!2d76.3588!3d10.1082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0807a8a7b03c21%3A0x1234abcd!2sSt.%20Pius%20Xth%20Auditorium%2C%20Choondy%2C%20Aluva!5e0!3m2!1sen!2sin!4v1691769600000"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        title="Wedding venue location"
+        [attr.title]="i18n.t().a11y.venueLocationTitle"
         tabindex="-1"
         aria-hidden="true"
       ></iframe>
       <div class="map-thumbnail__overlay">
-        <span class="map-thumbnail__cta">Open in Google Maps ↗</span>
+        <span class="map-thumbnail__cta">{{ i18n.t().events.viewMaps }}</span>
       </div>
     </a>
   </div>

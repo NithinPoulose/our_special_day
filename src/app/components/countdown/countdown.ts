@@ -8,6 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { WeddingConfigService } from '../../services/wedding-config.service';
+import { I18nService } from '../../services/i18n.service';
 import { RevealDirective } from '../../directives/reveal.directive';
 
 interface TimeLeft {
@@ -26,6 +27,7 @@ interface TimeLeft {
 })
 export class CountdownComponent implements OnInit, OnDestroy {
   protected readonly config = inject(WeddingConfigService);
+  protected readonly i18n   = inject(I18nService);
   private intervalId: ReturnType<typeof setInterval> | null = null;
 
   protected readonly timeLeft = signal<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -35,12 +37,19 @@ export class CountdownComponent implements OnInit, OnDestroy {
     return t.days === 0 && t.hours === 0 && t.minutes === 0 && t.seconds === 0;
   });
 
-  protected readonly units = computed(() => [
-    { label: 'Days',    value: this.pad(this.timeLeft().days) },
-    { label: 'Hours',   value: this.pad(this.timeLeft().hours) },
-    { label: 'Minutes', value: this.pad(this.timeLeft().minutes) },
-    { label: 'Seconds', value: this.pad(this.timeLeft().seconds) },
-  ]);
+  protected readonly units = computed(() => {
+    const u = this.i18n.t().countdown.units;
+    return [
+      { label: u.days,    value: this.pad(this.timeLeft().days) },
+      { label: u.hours,   value: this.pad(this.timeLeft().hours) },
+      { label: u.minutes, value: this.pad(this.timeLeft().minutes) },
+      { label: u.seconds, value: this.pad(this.timeLeft().seconds) },
+    ];
+  });
+
+  protected readonly countdownAriaLabel = computed(() =>
+    this.units().map(unit => `${unit.value} ${unit.label}`).join(' ')
+  );
 
   ngOnInit(): void {
     this.tick();

@@ -1,14 +1,14 @@
-<section id="countdown" class="countdown-section" aria-label="Time remaining until the wedding">
+<section id="countdown" class="countdown-section" [attr.aria-label]="i18n.t().a11y.countdownSection">
   <div class="countdown-inner">
     @if (!isPast()) {
-      <h2 class="countdown-title" appReveal>The Celebration Begins In</h2>
+      <h2 class="countdown-title" appReveal>{{ i18n.t().countdown.title }}</h2>
 
       <div
         class="grid"
         appReveal
         aria-live="polite"
         aria-atomic="true"
-        [attr.aria-label]="timeLeft().days + ' days ' + timeLeft().hours + ' hours ' + timeLeft().minutes + ' minutes ' + timeLeft().seconds + ' seconds'"
+        [attr.aria-label]="countdownAriaLabel()"
       >
         @for (unit of units(); track unit.label) {
           <div class="card" aria-hidden="true">
@@ -18,13 +18,13 @@
         }
       </div>
 
-      <p class="countdown-date" appReveal>{{ config.weddingDateDisplay }}</p>
+      <p class="countdown-date" appReveal>{{ i18n.t().weddingDateDisplay }}</p>
     } @else {
       <div class="celebration" appReveal>
-        <p class="section-eyebrow">Today Is The Day</p>
+        <p class="section-eyebrow">{{ i18n.t().countdown.todayEyebrow }}</p>
         <h2 class="celebration__title">
-          Congratulations,<br />
-          {{ config.groomName }} &amp; {{ config.brideName }}!
+          {{ i18n.t().countdown.congrats }}<br />
+          {{ i18n.t().groomName }} &amp; {{ i18n.t().brideName }}!
         </h2>
       </div>
     }

@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, signal, viewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, viewChild, ElementRef, inject } from '@angular/core';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-audio-player',
@@ -11,9 +12,9 @@ import { Component, ChangeDetectionStrategy, signal, viewChild, ElementRef } fro
       type="button"
       (click)="toggle()"
       [class.bgm-btn--playing]="isPlaying()"
-      [attr.aria-label]="isPlaying() ? 'Pause background music' : 'Play background music'"
+      [attr.aria-label]="isPlaying() ? i18n.t().a11y.audioPause : i18n.t().a11y.audioPlay"
       [attr.aria-pressed]="isPlaying()"
-      title="{{ isPlaying() ? 'Pause music' : 'Play music' }}"
+      [attr.title]="isPlaying() ? i18n.t().a11y.audioPause : i18n.t().a11y.audioPlay"
     >
       <span class="bgm-btn__ring" aria-hidden="true"></span>
 
@@ -117,6 +118,7 @@ import { Component, ChangeDetectionStrategy, signal, viewChild, ElementRef } fro
   `],
 })
 export class AudioPlayerComponent {
+  protected readonly i18n = inject(I18nService);
   private readonly audioRef = viewChild<ElementRef<HTMLAudioElement>>('audioEl');
   protected readonly isPlaying = signal(false);
 

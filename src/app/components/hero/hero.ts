@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { WeddingConfigService } from '../../services/wedding-config.service';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-hero',
@@ -11,6 +12,7 @@ import { WeddingConfigService } from '../../services/wedding-config.service';
 })
 export class HeroComponent {
   protected readonly config = inject(WeddingConfigService);
+  protected readonly i18n  = inject(I18nService);
 
   protected readonly bokeh = Array.from({ length: 20 }, (_, i) => ({
     id: i,

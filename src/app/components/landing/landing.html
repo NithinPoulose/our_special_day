@@ -1,4 +1,4 @@
-<section class="landing" aria-label="Wedding invitation cover">
+<section class="landing" [attr.aria-label]="i18n.t().a11y.landingSection">
 
   <!-- Corner ornaments -->
   <div class="corners" aria-hidden="true">
@@ -87,15 +87,15 @@
       </div>
     </div>
 
-    <p class="landing-eyebrow">Wedding Invitation</p>
+    <p class="landing-eyebrow">{{ i18n.t().landing.eyebrow }}</p>
 
     <h1 class="landing-names">
-      <span class="landing-name">{{ config.groomName }}</span>
+      <span class="landing-name">{{ i18n.t().groomName }}</span>
       <span class="landing-amp">&amp;</span>
-      <span class="landing-name">{{ config.brideName }}</span>
+      <span class="landing-name">{{ i18n.t().brideName }}</span>
     </h1>
 
-    <time class="landing-date">{{ config.weddingDateDisplay }}</time>
+    <time class="landing-date">{{ i18n.t().weddingDateDisplay }}</time>
 
     <div class="landing-divider" aria-hidden="true">
       <span class="landing-divider__line"></span>
@@ -104,7 +104,7 @@
     </div>
 
     <div class="landing-cta">
-      <span class="landing-cta__label">Open Invitation</span>
+      <span class="landing-cta__label">{{ i18n.t().landing.cta }}</span>
       <span class="landing-cta__pulse" aria-hidden="true"></span>
     </div>
   </div>

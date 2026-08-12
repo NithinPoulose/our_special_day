@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { LandingComponent } from './components/landing/landing';
 import { HeroComponent } from './components/hero/hero';
 import { CountdownComponent } from './components/countdown/countdown';
@@ -6,6 +6,8 @@ import { StoryComponent } from './components/story/story';
 import { EventsComponent } from './components/events/events';
 import { FooterComponent } from './components/footer/footer';
 import { AudioPlayerComponent } from './components/audio-player/audio-player';
+import { LangSwitcherComponent } from './components/lang-switcher/lang-switcher';
+import { I18nService } from './services/i18n.service';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +19,14 @@ import { AudioPlayerComponent } from './components/audio-player/audio-player';
     StoryComponent,
     EventsComponent,
     FooterComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    LangSwitcherComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
+  protected readonly i18n = inject(I18nService);
   protected readonly opened = signal(false);
   protected readonly leaving = signal(false);
 

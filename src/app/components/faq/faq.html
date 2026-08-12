@@ -1,8 +1,8 @@
-<section class="faq-section" aria-label="Frequently asked questions">
+<section class="faq-section" [attr.aria-label]="i18n.t().a11y.faqSection">
   <div class="faq-inner">
 
-    <p class="section-eyebrow eyebrow" appReveal>Good to Know</p>
-    <h2 class="faq-title" appReveal>Questions & Answers</h2>
+    <p class="section-eyebrow eyebrow" appReveal>{{ i18n.t().faq.eyebrow }}</p>
+    <h2 class="faq-title" appReveal>{{ i18n.t().faq.title }}</h2>
 
     <div class="ornament-divider" aria-hidden="true" style="color: var(--gold-dark)" appReveal>
       <span class="ornament-divider__line"></span>
@@ -11,7 +11,7 @@
     </div>
 
     <dl class="faq-list" appReveal>
-      @for (item of items; track item.question; let i = $index) {
+      @for (item of items(); track item.question; let i = $index) {
         <div class="faq-item" [class.faq-item--open]="openIndex() === i">
           <dt>
             <button
