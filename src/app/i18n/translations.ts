@@ -147,7 +147,38 @@ const en: Translations = {
       {
         year: '2021',
         title: 'First Date',
-        description: 'Finally, we met on our own, face to face — the day we both knew this had become more than just friendship.',
+        description:
+          'Finally, we met on our own, face to face — the day we both knew this had become more than just friendship.',
+      },
+      {
+        year: '2023',
+        title: 'Introducing Her to His Family',
+        description:
+          'Our love had grown into something we were ready to share with the people closest to us. In 2023, he introduced her to his family — the first step towards bringing our two worlds a little closer together.',
+      },
+      {
+        year: '2025',
+        title: 'The One Who Stayed',
+        description:
+          'When life became difficult, she became his greatest strength. Through the hardest days, she stood beside him with a love that asked for nothing in return — caring, comforting, and giving him the courage to keep going. She came to the hospital to see him and his mother, and that was the first time they met in person. What his mother saw that day was more than love; she saw someone who truly cared for her son. From then on, she could hardly imagine his life without her.',
+      },
+      {
+        year: '2026',
+        title: 'Introducing Him to Her Family',
+        description:
+          'Years later, the moment came to introduce him to her family too. Another little step, another family becoming part of the story we were building together.',
+      },
+      {
+        year: '2026',
+        title: 'Families Came Together',
+        description:
+          'What began with two classmates had grown into two lives and two families coming together. With everyone by our side, our journey towards marriage became more real than ever.',
+      },
+      {
+        year: '2026',
+        title: 'Getting Ready for Forever',
+        description:
+          'With the families united and the big day drawing closer, the wedding preparations began. From plans and little details to countless conversations, every moment brought us one step closer to becoming husband and wife.',
       },
       {
         year: '2026',
