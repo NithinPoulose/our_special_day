@@ -154,7 +154,7 @@ const en: Translations = {
         year: '2023',
         title: 'Introducing Her to His Family',
         description:
-          'Our love had grown into something we were ready to share with the people closest to us. In 2023, he introduced her to his family — the first step towards bringing our two worlds a little closer together.',
+          'Our love had grown into something we were ready to share with the people closest to us. In 2023, he introduced her to his family — the first step towards bringing our two worlds a little closer together. It was not an easy step; he had to patiently bridge the gaps, earn trust, and overcome the resistance along the way. But with time, understanding, and love, those walls slowly began to fade.',
       },
       {
         year: '2025',
